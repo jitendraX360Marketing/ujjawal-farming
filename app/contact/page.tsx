@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, FormEvent } from "react";
 import {
   Phone,
   Mail,
@@ -18,12 +18,13 @@ import {
   Building,
   ChevronRight,
   Award,
-  Calendar,
   Heart,
 } from "lucide-react";
 
 export default function ContactPage() {
-  const [scrollY, setScrollY] = useState(0);
+  // Removed scrollY state and its associated useEffect
+  // Removed all useRefs for sections and individual cards
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -34,133 +35,34 @@ export default function ContactPage() {
     inquiryType: "general",
   });
 
-  // Refs for section animations
-  const heroSectionRef = useRef(null);
-  const contactInfoSectionRef = useRef(null);
-  const contactFormSectionRef = useRef(null);
-  const mapSectionRef = useRef(null);
-
-  // States for section animations
-  const [heroInView, setHeroInView] = useState(false);
-  const [contactInfoInView, setContactInfoInView] = useState(false);
-  const [contactFormInView, setContactFormInView] = useState(false);
-  const [mapSectionInView, setMapSectionInView] = useState(false);
-
-  // Refs and states for individual card animations within sections
-  const quickStatsRefs = useRef([]);
-  const [quickStatsInView, setQuickStatsInView] = useState(
-    Array(4).fill(false)
-  );
-
-  const contactCardRefs = useRef([]);
-  const [contactCardsInView, setContactCardsInView] = useState(
-    Array(4).fill(false)
-  );
-
-  useEffect(() => {
-    // Parallax effect for floating elements
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
-
-    // Intersection Observers for sections
-    const observers = [];
-
-    const createObserver = (ref, setState, threshold = 0.2) => {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setState(true);
-              observer.unobserve(entry.target); // Stop observing once in view
-            }
-          });
-        },
-        { threshold: threshold }
-      );
-      if (ref.current) {
-        observer.observe(ref.current);
-      }
-      observers.push(observer);
-    };
-
-    createObserver(heroSectionRef, setHeroInView, 0.3); // Higher threshold for hero
-    createObserver(contactInfoSectionRef, setContactInfoInView, 0.2);
-    createObserver(contactFormSectionRef, setContactFormInView, 0.2);
-    createObserver(mapSectionRef, setMapSectionInView, 0.2);
-
-    // Observer for Quick Stats cards (staggered animation)
-    const quickStatsObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = parseInt(entry.target.dataset.index);
-            setQuickStatsInView((prev) => {
-              const newState = [...prev];
-              newState[index] = true;
-              return newState;
-            });
-          }
-        });
-      },
-      { threshold: 0.5, once: true }
-    );
-
-    quickStatsRefs.current.forEach((ref) => {
-      if (ref) quickStatsObserver.observe(ref);
-    });
-    observers.push(quickStatsObserver);
-
-    // Observer for Contact Info cards (staggered animation)
-    const contactCardsObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = parseInt(entry.target.dataset.index);
-            setContactCardsInView((prev) => {
-              const newState = [...prev];
-              newState[index] = true;
-              return newState;
-            });
-          }
-        });
-      },
-      { threshold: 0.4, once: true }
-    );
-
-    contactCardRefs.current.forEach((ref) => {
-      if (ref) contactCardsObserver.observe(ref);
-    });
-    observers.push(contactCardsObserver);
-
-    // Cleanup
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      observers.forEach((observer) => observer.disconnect());
-    };
-  }, []); // Empty dependency array means this effect runs once on mount
-
-  const handleInputChange = (e) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // In a real application, you'd send this data to a backend server.
-    alert("Thank you for your inquiry! We'll get back to you soon.");
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      company: "",
-      subject: "",
-      message: "",
-      inquiryType: "general",
-    });
+    try {
+      console.log("Form submitted:", formData);
+     
+      alert("Thank you for your inquiry! We'll get back to you soon.");
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        subject: "",
+        message: "",
+        inquiryType: "general",
+      });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("There was an error submitting your inquiry. Please try again.");
+    }
   };
 
   const contactInfo = [
@@ -249,16 +151,11 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="bg-gradient-to-br from-orange-50 via-white to-amber-50 text-gray-900 min-h-screen">
+    <div className="bg-gradient-to-br from-orange-50 via-white to-amber-50 text-gray-900 min-h-screen font-sans">
       {/* Hero Section */}
       <section
-        ref={heroSectionRef}
         className={`relative min-h-screen flex items-center justify-center overflow-hidden py-24
-          transition-all duration-1000 ease-out ${
-            heroInView
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-20"
-          }`}
+        opacity-100 translate-y-0`} 
       >
         {/* Traditional Pattern Background */}
         <div className="absolute inset-0 opacity-10">
@@ -276,23 +173,17 @@ export default function ContactPage() {
           />
         </div>
 
-        {/* Floating Elements (Parallax) */}
-        <div className="absolute inset-0">
+        {/* Floating Elements (No Parallax) */}
+        <div className="absolute inset-0 z-0">
+          {/* Removed style={{ transform: `translateY(${scrollY * ...}px)` }} */}
           <div
             className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-amber-200 to-orange-300 rounded-lg rotate-12 opacity-60"
-            style={{
-              transform: `translateY(${scrollY * 0.2}px) rotate(12deg)`,
-            }}
           />
           <div
             className="absolute top-40 right-20 w-24 h-24 bg-gradient-to-br from-green-200 to-emerald-300 rounded-full opacity-60"
-            style={{ transform: `translateY(${scrollY * -0.15}px)` }}
           />
           <div
             className="absolute bottom-40 left-1/4 w-28 h-28 bg-gradient-to-br from-blue-200 to-indigo-300 rounded-lg -rotate-12 opacity-60"
-            style={{
-              transform: `translateY(${scrollY * 0.1}px) rotate(-12deg)`,
-            }}
           />
         </div>
 
@@ -339,16 +230,8 @@ export default function ContactPage() {
             {quickStats.map((stat, index) => (
               <div
                 key={index}
-                ref={(el) => (quickStatsRefs.current[index] = el)} // Attach ref
-                data-index={index} // Data attribute for index
                 className={`group bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border-2 border-amber-200 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 hover:border-amber-300
-                  ${
-                    quickStatsInView[index]
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-10"
-                  }
-                  transition-all ease-out duration-700 delay-${index * 100}`}
-                style={{ transitionDelay: `${index * 100}ms` }} // Staggered delay
+                opacity-100 translate-y-0`} 
               >
                 <stat.icon
                   className={`w-12 h-12 ${stat.color} mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}
@@ -365,15 +248,9 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Contact Information Section */}
       <section
-        ref={contactInfoSectionRef}
         className={`py-24 px-6 bg-gradient-to-b from-white to-amber-50
-          transition-all duration-1000 ease-out ${
-            contactInfoInView
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-20"
-          }`}
+        opacity-100 translate-y-0`}
       >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
@@ -393,18 +270,10 @@ export default function ContactPage() {
             {contactInfo.map((info, index) => (
               <div
                 key={index}
-                ref={(el) => (contactCardRefs.current[index] = el)} // Attach ref
-                data-index={index} // Data attribute for index
                 className={`group bg-gradient-to-br ${
                   info.bgColor
                 } rounded-3xl p-8 shadow-xl border-2 border-white/80 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500
-                  ${
-                    contactCardsInView[index]
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-10"
-                  }
-                  transition-all ease-out duration-700 delay-${index * 150}`}
-                style={{ transitionDelay: `${index * 150}ms` }} // Staggered delay
+                opacity-100 translate-y-0`}
               >
                 <div
                   className={`w-16 h-16 bg-gradient-to-br ${info.color} rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}
@@ -430,19 +299,12 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Contact Form Section */}
       <section
-        ref={contactFormSectionRef}
         className={`py-24 px-6 bg-white
-          transition-all duration-1000 ease-out ${
-            contactFormInView
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-20"
-          }`}
+        opacity-100 translate-y-0`} 
       >
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
-            {/* Form */}
             <div>
               <div className="mb-12">
                 <h2 className="text-5xl font-black mb-6 text-gray-900">
@@ -479,7 +341,7 @@ export default function ContactPage() {
                           value={type.value}
                           checked={formData.inquiryType === type.value}
                           onChange={handleInputChange}
-                          className="sr-only"
+                          className="sr-only" // Hidden radio button, styled by parent label
                         />
                         <type.icon className="w-5 h-5" />
                         <span className="text-sm font-semibold">
@@ -493,13 +355,17 @@ export default function ContactPage() {
                 {/* Personal Information */}
                 <div className="grid lg:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-lg font-bold text-gray-900 mb-3">
+                    <label
+                      htmlFor="name"
+                      className="block text-lg font-bold text-gray-900 mb-3"
+                    >
                       Full Name *
                     </label>
                     <div className="relative">
                       <User className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                       <input
                         type="text"
+                        id="name"
                         name="name"
                         value={formData.name}
                         onChange={handleInputChange}
@@ -510,13 +376,17 @@ export default function ContactPage() {
                     </div>
                   </div>
                   <div>
-                    <label className="block text-lg font-bold text-gray-900 mb-3">
+                    <label
+                      htmlFor="phone"
+                      className="block text-lg font-bold text-gray-900 mb-3"
+                    >
                       Phone Number *
                     </label>
                     <div className="relative">
                       <Phone className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                       <input
                         type="tel"
+                        id="phone"
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
@@ -530,13 +400,17 @@ export default function ContactPage() {
 
                 <div className="grid lg:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-lg font-bold text-gray-900 mb-3">
+                    <label
+                      htmlFor="email"
+                      className="block text-lg font-bold text-gray-900 mb-3"
+                    >
                       Email Address *
                     </label>
                     <div className="relative">
                       <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                       <input
                         type="email"
+                        id="email"
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
@@ -547,13 +421,17 @@ export default function ContactPage() {
                     </div>
                   </div>
                   <div>
-                    <label className="block text-lg font-bold text-gray-900 mb-3">
+                    <label
+                      htmlFor="company"
+                      className="block text-lg font-bold text-gray-900 mb-3"
+                    >
                       Company Name
                     </label>
                     <div className="relative">
                       <Building className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                       <input
                         type="text"
+                        id="company"
                         name="company"
                         value={formData.company}
                         onChange={handleInputChange}
@@ -565,11 +443,15 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label className="block text-lg font-bold text-gray-900 mb-3">
+                  <label
+                    htmlFor="subject"
+                    className="block text-lg font-bold text-gray-900 mb-3"
+                  >
                     Subject *
                   </label>
                   <input
                     type="text"
+                    id="subject"
                     name="subject"
                     value={formData.subject}
                     onChange={handleInputChange}
@@ -580,14 +462,19 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label className="block text-lg font-bold text-gray-900 mb-3">
+                  <label
+                    htmlFor="message"
+                    className="block text-lg font-bold text-gray-900 mb-3"
+                  >
                     Message *
                   </label>
                   <textarea
+                    id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
                     required
+                    rows={6}
                     className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:border-amber-500 focus:outline-none transition-colors duration-300 text-lg resize-none"
                     placeholder="Please provide details about your inquiry, requirements, or questions..."
                   ></textarea>
@@ -611,7 +498,8 @@ export default function ContactPage() {
               {/* Why Choose Us */}
               <div className="bg-gradient-to-br from-amber-50 to-orange-100 rounded-3xl p-8 shadow-xl border-2 border-amber-200">
                 <h3 className="text-3xl font-bold mb-6 text-gray-900">
-                  Why Partner with <span className="text-amber-700">Us?</span>
+                  Why Partner with{" "}
+                  <span className="text-amber-700">Us?</span>
                 </h3>
                 <div className="space-y-4">
                   <div className="flex items-center gap-4">
@@ -702,182 +590,16 @@ export default function ContactPage() {
                       Emergency Support
                     </span>
                     <span className="text-red-600 font-bold">
-                      24/7 Available
+                      Available 24/7 (Contact given numbers)
                     </span>
                   </div>
                 </div>
               </div>
-
-              {/* Quick Contact */}
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-3xl p-8 shadow-xl border-2 border-blue-200">
-                <h3 className="text-3xl font-bold mb-6 text-gray-900">
-                  Quick <span className="text-blue-700">Contact</span>
-                </h3>
-                <div className="space-y-4">
-                  <a
-                    href="tel:+919876543210"
-                    className="flex items-center gap-4 p-4 bg-white rounded-xl hover:shadow-md transition-all duration-300 group"
-                  >
-                    <Phone className="w-8 h-8 text-green-600 group-hover:scale-110 transition-transform duration-300" />
-                    <div>
-                      <p className="font-bold text-gray-900">
-                        Call Ujjawal Farming
-                      </p>
-                      <p className="text-green-600">+91 98765 43210</p>
-                    </div>
-                  </a>
-                  <a
-                    href="mailto:info@ujjawalfarming.com"
-                    className="flex items-center gap-4 p-4 bg-white rounded-xl hover:shadow-md transition-all duration-300 group"
-                  >
-                    <Mail className="w-8 h-8 text-blue-600 group-hover:scale-110 transition-transform duration-300" />
-                    <div>
-                      <p className="font-bold text-gray-900">
-                        Email Ujjawal Farming
-                      </p>
-                      <p className="text-blue-600">info@ujjawalfarming.com</p>
-                    </div>
-                  </a>
-                  <a
-                    href="tel:+918765432109"
-                    className="flex items-center gap-4 p-4 bg-white rounded-xl hover:shadow-md transition-all duration-300 group"
-                  >
-                    <Phone className="w-8 h-8 text-purple-600 group-hover:scale-110 transition-transform duration-300" />
-                    <div>
-                      <p className="font-bold text-gray-900">
-                        Call Shri Shyam Engineering
-                      </p>
-                      <p className="text-purple-600">+91 87654 32109</p>
-                    </div>
-                  </a>
-                  <a
-                    href="mailto:support@shrishyameng.com"
-                    className="flex items-center gap-4 p-4 bg-white rounded-xl hover:shadow-md transition-all duration-300 group"
-                  >
-                    <Mail className="w-8 h-8 text-red-600 group-hover:scale-110 transition-transform duration-300" />
-                    <div>
-                      <p className="font-bold text-gray-900">
-                        Email Shri Shyam Engineering
-                      </p>
-                      <p className="text-red-600">support@shrishyameng.com</p>
-                    </div>
-                  </a>
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Map/Location Section */}
-      <section
-        ref={mapSectionRef}
-        className={`py-24 px-6 bg-gradient-to-br from-amber-50 to-orange-50
-          transition-all duration-1000 ease-out ${
-            mapSectionInView
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-20"
-          }`}
-      >
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-black mb-6 text-gray-900">
-              Visit Our{" "}
-              <span className="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
-                Facilities
-              </span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Explore our manufacturing plant or get guidance at our
-              agricultural innovation hub.
-            </p>
-          </div>
-
-          <div className="bg-white rounded-3xl p-8 shadow-2xl border-2 border-amber-200">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h3 className="text-3xl font-bold mb-6 text-gray-900">
-                  Shri Shyam Engineering (Manufacturing Unit)
-                </h3>
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-start gap-4">
-                    <MapPin className="w-6 h-6 text-amber-600 mt-1" />
-                    <div>
-                      <p className="font-bold text-gray-900">Address</p>
-                      <p className="text-gray-600">Industrial Area, Sector 5</p>
-                      <p className="text-gray-600">
-                        Bhiwadi, Rajasthan - 301019, India
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <Phone className="w-6 h-6 text-amber-600" />
-                    <div>
-                      <p className="font-bold text-gray-900">Phone</p>
-                      <p className="text-gray-600">+91 87654 32109</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <Mail className="w-6 h-6 text-amber-600" />
-                    <div>
-                      <p className="font-bold text-gray-900">Email</p>
-                      <p className="text-gray-600">support@shrishyameng.com</p>
-                    </div>
-                  </div>
-                </div>
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.3090967812984!2d76.84074251508215!3d28.37521898251299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d4f6a7d5b1281%3A0x3b1c6d3a8e9e1c7!2sShri%20Shyam%20Engineering!5e0!3m2!1sen!2sin!4v1678888888888!5m2!1sen!2sin"
-                  width="100%"
-                  height="350"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="rounded-2xl shadow-lg border border-amber-300"
-                  title="Shri Shyam Engineering Location"
-                ></iframe>
-              </div>
-
-              <div>
-                <h3 className="text-3xl font-bold mb-6 text-gray-900">
-                  Ujjawal Farming (Innovation & Sales Office)
-                </h3>
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-start gap-4">
-                    <MapPin className="w-6 h-6 text-green-600 mt-1" />
-                    <div>
-                      <p className="font-bold text-gray-900">Address</p>
-                      <p className="text-gray-600">Innovation Hub, Tech Park</p>
-                      <p className="text-gray-600">
-                        Jaipur, Rajasthan - 302001, India (Example Address -
-                        please update)
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <Phone className="w-6 h-6 text-green-600" />
-                    <div>
-                      <p className="font-bold text-gray-900">Phone</p>
-                      <p className="text-gray-600">+91 98765 43210</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <Mail className="w-6 h-6 text-green-600" />
-                    <div>
-                      <p className="font-bold text-gray-900">Email</p>
-                      <p className="text-gray-600">info@ujjawalfarming.com</p>
-                    </div>
-                  </div>
-                </div>
-                {/* Placeholder for Ujjawal Farming map, you can replace this with an actual map for their location */}
-                <div className="bg-gray-200 rounded-2xl shadow-lg border border-green-300 flex items-center justify-center text-gray-500 font-semibold p-8 h-[350px]">
-                  Map coming soon for Ujjawal Farming's Innovation Hub!
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
