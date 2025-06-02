@@ -23,7 +23,7 @@ export default function Navbar() {
       {/* Rich Top Bar */}
       <div className="bg-gradient-to-r from-orange-600 via-orange-500 to-red-500 text-white py-3 px-4 relative overflow-hidden hidden lg:flex">
         <div className="absolute inset-0 bg-black/10"></div>
-        <div className="max-w-7xl mx-auto flex justify-between items-center relative z-10">
+        <div className="max-w-7xl w-7xl px-5 mx-auto flex justify-between items-center relative z-10">
           <div className="flex items-center space-x-8">
             <div className="flex items-center space-x-2 hover:scale-105 transition-transform duration-200">
               <Phone className="w-4 h-4" />
