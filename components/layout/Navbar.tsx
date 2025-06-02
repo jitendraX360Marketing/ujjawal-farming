@@ -13,6 +13,7 @@ import {
   BadgeCheck,
 } from "lucide-react";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,7 +24,7 @@ export default function Navbar() {
       {/* Rich Top Bar */}
       <div className="bg-gradient-to-r from-orange-600 via-orange-500 to-red-500 text-white py-3 px-4 relative overflow-hidden hidden lg:flex">
         <div className="absolute inset-0 bg-black/10"></div>
-        <div className="max-w-7xl w-7xl px-5 mx-auto flex justify-between items-center relative z-10">
+        <div className="w-7xl px-5 mx-auto flex justify-between items-center relative z-10">
           <div className="flex items-center space-x-8">
             <div className="flex items-center space-x-2 hover:scale-105 transition-transform duration-200">
               <Phone className="w-4 h-4" />
@@ -60,21 +61,7 @@ export default function Navbar() {
           <div className="flex justify-between items-center h-20">
             {/* Premium Logo */}
             <div className="flex items-center space-x-4">
-              <div className="relative group">
-                <div className="w-14 h-14 bg-gradient-to-br from-orange-500 via-orange-600 to-red-600 rounded-2xl flex items-center justify-center shadow-2xl group-hover:shadow-orange-200 transition-all duration-300 transform group-hover:scale-110">
-                  <div className="text-white font-bold text-xl">AM</div>
-                </div>
-                <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-green-400 to-green-500 rounded-full border-3 border-white shadow-lg animate-pulse"></div>
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-800 via-orange-600 to-red-600 bg-clip-text text-transparent">
-                  Agri<span className="text-orange-600">Machinery</span>
-                </h1>
-                <p className="text-xs text-gray-600 font-medium flex items-center space-x-2">
-                  <Shield className="w-3 h-3" />
-                  <span>Premium Export Solutions</span>
-                </p>
-              </div>
+              <Image alt="Shri Shyam Logo" src={"/images/logo-main.png"} height={20} width={200}/>
             </div>
 
             {/* Professional Desktop Navigation */}
