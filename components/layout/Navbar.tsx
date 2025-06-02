@@ -55,13 +55,18 @@ export default function Navbar() {
       </div>
 
       {/* Premium Main Navigation */}
-      <nav className="bg-white shadow-xl border-b-4 border-orange-200 sticky top-0 z-50 relative">
+      <nav className="bg-white shadow-xl border-b-4 border-orange-200 sticky top-0 z-50">
         <div className="absolute inset-0 bg-gradient-to-r from-orange-50/30 to-red-50/30"></div>
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="flex justify-between items-center h-20">
             {/* Premium Logo */}
             <div className="flex items-center space-x-4">
-              <Image alt="Shri Shyam Logo" src={"/images/logo-main.png"} height={20} width={200}/>
+              <Image
+                alt="Shri Shyam Logo"
+                src={"/images/logo-main.png"}
+                height={20}
+                width={200}
+              />
             </div>
 
             {/* Professional Desktop Navigation */}
@@ -139,14 +144,14 @@ export default function Navbar() {
               </div>
 
               <Link
-                href="/exports"
+                href="/export"
                 className="px-4 py-2 text-gray-700 hover:text-orange-600 font-medium rounded-lg hover:bg-gradient-to-r hover:from-orange-50 hover:to-red-50 transition-all duration-300"
               >
-                Export Process
+                Export
               </Link>
 
               <Link
-                href="/quality"
+                href="/insights"
                 className="px-4 py-2 text-gray-700 hover:text-orange-600 font-medium rounded-lg hover:bg-gradient-to-r hover:from-orange-50 hover:to-red-50 transition-all duration-300"
               >
                 Insights
