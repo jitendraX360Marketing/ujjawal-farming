@@ -6,25 +6,22 @@ import {
   MapPin,
   Clock,
   Send,
-  Factory,
-  Users,
-  Headphones,
-  Globe,
-  Wrench,
-  Star,
-  Shield,
-  MessageCircle,
-  User,
-  Building,
-  ChevronRight,
-  Award,
-  Heart,
+  Factory, // For product inquiry
+  Users, // For dealership
+  Headphones, // For general support/24/7
+  Globe, // For export inquiry/countries served
+  Wrench, // For Shri Shyam Engineering product/technical support
+  Star, // For customer satisfaction
+  Shield, // For quality/certification
+  MessageCircle, // For general inquiry
+  User, // For name field
+  Building, // For company name field
+  ChevronRight, // For send button
+  Award, // For years experience
+  Heart, // For customer-centric
 } from "lucide-react";
 
 export default function ContactPage() {
-  // Removed scrollY state and its associated useEffect
-  // Removed all useRefs for sections and individual cards
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -36,7 +33,9 @@ export default function ContactPage() {
   });
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     setFormData({
       ...formData,
@@ -48,7 +47,7 @@ export default function ContactPage() {
     e.preventDefault();
     try {
       console.log("Form submitted:", formData);
-     
+
       alert("Thank you for your inquiry! We'll get back to you soon.");
       setFormData({
         name: "",
@@ -79,28 +78,28 @@ export default function ContactPage() {
     },
     {
       icon: Mail,
-      title: "Email Support",
+      title: "Email Assistance", // Renamed for professionalism
       details: ["info@ujjawalfarming.com", "support@shrishyameng.com"],
-      description: "Quick Response Within 2 Hours",
+      description: "Response within 2 hours", // Shortened description
       color: "from-blue-600 to-indigo-700",
       bgColor: "from-blue-50 to-indigo-100",
     },
     {
       icon: MapPin,
-      title: "Factory Address",
+      title: "Factory & Head Office", // Renamed for clarity
       details: [
         "Industrial Area, Sector 5",
         "Bhiwadi, Rajasthan - 301019, India",
       ],
-      description: "Manufacturing & Head Office (Shri Shyam Engineering)",
+      description: "Shri Shyam Engineering", // More concise
       color: "from-amber-600 to-orange-700",
       bgColor: "from-amber-50 to-orange-100",
     },
     {
       icon: Clock,
-      title: "Working Hours",
+      title: "Operational Hours", // Renamed for professionalism
       details: ["Mon-Sat: 9:00 AM - 7:00 PM", "Sunday: 10:00 AM - 5:00 PM"],
-      description: "Customer Service Hours",
+      description: "Standard Business Hours", // More concise
       color: "from-red-600 to-pink-700",
       bgColor: "from-red-50 to-pink-100",
     },
@@ -110,22 +109,22 @@ export default function ContactPage() {
     { value: "general", label: "General Inquiry", icon: MessageCircle },
     {
       value: "product_ujjawalfarming",
-      label: "Product Info (Ujjawal Farming)",
+      label: "Ujjawal Farming Product", // Shortened
       icon: Factory,
     },
     {
       value: "product_shrishyameng",
-      label: "Product Info (Shri Shyam Engineering)",
+      label: "Shri Shyam Engineering Product", // Shortened
       icon: Wrench,
     },
     { value: "support", label: "Technical Support", icon: Headphones },
-    { value: "dealer", label: "Dealership", icon: Users },
-    { value: "export", label: "Export Inquiry", icon: Globe },
+    { value: "dealer", label: "Dealership Opportunities", icon: Users }, // Slightly expanded for clarity
+    { value: "export", label: "Export & International", icon: Globe }, // Slightly expanded for clarity
   ];
 
   const quickStats = [
     {
-      number: "2hrs",
+      number: "2 Hrs", // Changed to "Hrs"
       label: "Response Time",
       icon: Clock,
       color: "text-green-700",
@@ -138,24 +137,23 @@ export default function ContactPage() {
     },
     {
       number: "24/7",
-      label: "Support Available",
+      label: "Support Availability", // Changed for professionalism
       icon: Headphones,
       color: "text-amber-700",
     },
     {
       number: "99%",
-      label: "Customer Satisfaction",
+      label: "Client Satisfaction", // Changed for professionalism
       icon: Star,
       color: "text-red-700",
     },
   ];
 
   return (
-    <div className="bg-gradient-to-br from-orange-50 via-white to-amber-50 text-gray-900 min-h-screen font-sans">
+    <div className="bg-gradient-to-br from-orange-50 via-white to-amber-50 text-gray-900  font-sans">
       {/* Hero Section */}
       <section
-        className={`relative min-h-screen flex items-center justify-center overflow-hidden py-24
-        opacity-100 translate-y-0`} 
+        className={`relative min-h-[85vh] flex items-center justify-center overflow-hidden py-20`}
       >
         {/* Traditional Pattern Background */}
         <div className="absolute inset-0 opacity-10">
@@ -173,70 +171,56 @@ export default function ContactPage() {
           />
         </div>
 
-        {/* Floating Elements (No Parallax) */}
+        {/* Floating Elements (No Parallax) - Subtly adjusted sizes/opacity */}
         <div className="absolute inset-0 z-0">
-          {/* Removed style={{ transform: `translateY(${scrollY * ...}px)` }} */}
-          <div
-            className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-amber-200 to-orange-300 rounded-lg rotate-12 opacity-60"
-          />
-          <div
-            className="absolute top-40 right-20 w-24 h-24 bg-gradient-to-br from-green-200 to-emerald-300 rounded-full opacity-60"
-          />
-          <div
-            className="absolute bottom-40 left-1/4 w-28 h-28 bg-gradient-to-br from-blue-200 to-indigo-300 rounded-lg -rotate-12 opacity-60"
-          />
+          <div className="absolute top-16 left-16 w-28 h-28 bg-gradient-to-br from-amber-200/50 to-orange-300/50 rounded-lg rotate-12 opacity-50" />
+          <div className="absolute top-32 right-16 w-20 h-20 bg-gradient-to-br from-green-200/50 to-emerald-300/50 rounded-full opacity-50" />
+          <div className="absolute bottom-32 left-1/4 w-24 h-24 bg-gradient-to-br from-blue-200/50 to-indigo-300/50 rounded-lg -rotate-12 opacity-50" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
-          <div className="mb-12">
+          <div className="mb-10">
             {/* Header Badge */}
-            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-amber-600 to-orange-700 text-white px-8 py-4 rounded-full text-sm font-bold mb-8 shadow-lg border-2 border-amber-400">
-              <Headphones className="w-5 h-5" />
-              Always Here to Help
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-600 to-orange-700 text-white px-6 py-3 rounded-full text-sm font-bold mb-6 shadow-md border-2 border-amber-400">
+              <Headphones className="w-4 h-4" />
+              Always Here to Assist
             </div>
 
-            <h1 className="text-6xl lg:text-8xl font-black mb-6 text-gray-900 leading-tight">
-              Contact{" "}
+            <h1 className="text-5xl lg:text-7xl font-black mb-4 text-gray-900 leading-tight">
+              Get In{" "}
               <span className="bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent">
-                Us
+                Touch
               </span>
             </h1>
 
-            <div className="flex items-center justify-center gap-6 mb-10">
-              <div className="h-0.5 w-24 bg-gradient-to-r from-transparent via-amber-500 to-transparent"></div>
-              <div className="flex gap-2">
-                <div className="w-3 h-3 bg-amber-500 rounded-full"></div>
-                <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
-                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <div className="h-0.5 w-20 bg-gradient-to-r from-transparent via-amber-500 to-transparent"></div>
+              <div className="flex gap-1.5">
+                <div className="w-2.5 h-2.5 bg-amber-500 rounded-full"></div>
+                <div className="w-2.5 h-2.5 bg-orange-500 rounded-full"></div>
+                <div className="w-2.5 h-2.5 bg-red-500 rounded-full"></div>
               </div>
-              <div className="h-0.5 w-24 bg-gradient-to-r from-transparent via-amber-500 to-transparent"></div>
+              <div className="h-0.5 w-20 bg-gradient-to-r from-transparent via-amber-500 to-transparent"></div>
             </div>
           </div>
 
-          <p className="text-xl lg:text-2xl text-gray-700 max-w-5xl mx-auto leading-relaxed mb-16 font-medium">
-            Ready to revolutionize your farming or need engineering solutions?
-            Get in touch with our expert teams.
-            <br />
-            <span className="font-bold text-amber-700">
-              Shri Shyam Engineering
-            </span>{" "}
-            and{" "}
-            <span className="font-bold text-green-700">Ujjawal Farming</span> —
-            your partners in success.
+          <p className="text-lg lg:text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed mb-12 font-medium">
+            Ready to enhance your operations or require expert engineering
+            solutions? Connect with our dedicated teams at **Shri Shyam
+            Engineering** and **Ujjawal Farming**—your trusted partners.
           </p>
 
           {/* Quick Stats */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
             {quickStats.map((stat, index) => (
               <div
                 key={index}
-                className={`group bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border-2 border-amber-200 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 hover:border-amber-300
-                opacity-100 translate-y-0`} 
+                className={`group bg-white/80 backdrop-blur-sm rounded-xl p-5 shadow-md border border-amber-200 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 hover:border-amber-300`}
               >
                 <stat.icon
-                  className={`w-12 h-12 ${stat.color} mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}
+                  className={`w-10 h-10 ${stat.color} mx-auto mb-3 group-hover:scale-110 transition-transform duration-300`}
                 />
-                <div className="text-4xl font-black mb-2 text-gray-800">
+                <div className="text-3xl font-black mb-1 text-gray-800">
                   {stat.number}
                 </div>
                 <div className="text-sm font-bold text-gray-600">
@@ -248,44 +232,48 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section
-        className={`py-24 px-6 bg-gradient-to-b from-white to-amber-50
-        opacity-100 translate-y-0`}
-      >
+      {/* --- */}
+      {/* Contact Information Section */}
+      <section className={`py-20 px-6 bg-gradient-to-b from-white to-amber-50`}>
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl lg:text-6xl font-black mb-6 text-gray-900">
-              Get In{" "}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-black mb-4 text-gray-900">
+              Reach{" "}
               <span className="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
-                Touch
+                Us
               </span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Multiple ways to connect with us - choose what's convenient for
-              you.
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Choose the most convenient way to connect with our team.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 xl:grid-cols-4 gap-8 mb-16">
+          <div className="grid lg:grid-cols-2 xl:grid-cols-4 gap-6 mb-12">
+            {" "}
+            {/* Reduced gap and bottom margin */}
             {contactInfo.map((info, index) => (
               <div
                 key={index}
-                className={`group bg-gradient-to-br ${
-                  info.bgColor
-                } rounded-3xl p-8 shadow-xl border-2 border-white/80 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500
-                opacity-100 translate-y-0`}
+                className={`group bg-gradient-to-br ${info.bgColor} rounded-2xl p-6 shadow-lg border border-white/80 hover:shadow-xl hover:-translate-y-1 transition-all duration-300`}
               >
                 <div
-                  className={`w-16 h-16 bg-gradient-to-br ${info.color} rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                  className={`w-14 h-14 bg-gradient-to-br ${info.color} rounded-lg flex items-center justify-center mb-5 shadow-md group-hover:scale-105 transition-transform duration-300`}
                 >
-                  <info.icon className="w-8 h-8 text-white" />
+                  <info.icon className="w-7 h-7 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold mb-2 text-gray-900">
+                <h3 className="text-xl font-bold mb-2 text-gray-900">
                   {info.title}
                 </h3>
-                <div className="space-y-2 mb-4">
+                <div className="space-y-1.5 mb-3">
+                  {" "}
+                  {/* Reduced vertical space and margin */}
                   {info.details.map((detail, idx) => (
-                    <p key={idx} className="text-gray-700 font-medium">
+                    <p
+                      key={idx}
+                      className="text-gray-700 font-medium text-base"
+                    >
+                      {" "}
+                      {/* Reduced font size */}
                       {detail}
                     </p>
                   ))}
@@ -299,37 +287,51 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section
-        className={`py-24 px-6 bg-white
-        opacity-100 translate-y-0`} 
-      >
+      {/* --- */}
+      {/* Contact Form Section */}
+      <section className={`py-20 px-6 bg-white`}>
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {" "}
+            {/* Reduced gap */}
             <div>
-              <div className="mb-12">
-                <h2 className="text-5xl font-black mb-6 text-gray-900">
+              <div className="mb-10">
+                {" "}
+                {/* Reduced bottom margin */}
+                <h2 className="text-4xl font-black mb-4 text-gray-900">
+                  {" "}
+                  {/* Reduced font size */}
                   Send Us A{" "}
                   <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
                     Message
                   </span>
                 </h2>
-                <p className="text-xl text-gray-600">
-                  Fill out the form and our team will get back to you within 2
+                <p className="text-lg text-gray-600">
+                  {" "}
+                  {/* Reduced font size */}
+                  Complete the form below, and our team will respond within 2
                   hours during business hours.
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-8">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {" "}
+                {/* Reduced vertical space */}
                 {/* Inquiry Type */}
                 <div>
-                  <label className="block text-lg font-bold text-gray-900 mb-4">
+                  <label className="block text-base font-bold text-gray-900 mb-3">
+                    {" "}
+                    {/* Reduced font size */}
                     Inquiry Type
                   </label>
-                  <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
+                  <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
+                    {" "}
+                    {/* Reduced gap */}
                     {inquiryTypes.map((type) => (
                       <label
                         key={type.value}
-                        className={`flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all duration-300 ${
+                        className={`flex items-center gap-2 p-3 rounded-lg border-2 cursor-pointer transition-all duration-300 ${
+                          // Reduced padding, less rounded, smaller gap
                           formData.inquiryType === type.value
                             ? "border-amber-500 bg-amber-50 text-amber-700"
                             : "border-gray-200 hover:border-amber-300 hover:bg-amber-50"
@@ -341,9 +343,9 @@ export default function ContactPage() {
                           value={type.value}
                           checked={formData.inquiryType === type.value}
                           onChange={handleInputChange}
-                          className="sr-only" // Hidden radio button, styled by parent label
+                          className="sr-only"
                         />
-                        <type.icon className="w-5 h-5" />
+                        <type.icon className="w-4 h-4" /> {/* Smaller icon */}
                         <span className="text-sm font-semibold">
                           {type.label}
                         </span>
@@ -351,18 +353,20 @@ export default function ContactPage() {
                     ))}
                   </div>
                 </div>
-
                 {/* Personal Information */}
-                <div className="grid lg:grid-cols-2 gap-6">
+                <div className="grid lg:grid-cols-2 gap-5">
+                  {" "}
+                  {/* Reduced gap */}
                   <div>
                     <label
                       htmlFor="name"
-                      className="block text-lg font-bold text-gray-900 mb-3"
+                      className="block text-base font-bold text-gray-900 mb-2" // Reduced font size and margin
                     >
                       Full Name *
                     </label>
                     <div className="relative">
-                      <User className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />{" "}
+                      {/* Smaller icon */}
                       <input
                         type="text"
                         id="name"
@@ -370,7 +374,7 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                        className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:border-amber-500 focus:outline-none transition-colors duration-300 text-lg"
+                        className="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-300 text-base" // Reduced padding, less rounded, smaller text
                         placeholder="Enter your full name"
                       />
                     </div>
@@ -378,12 +382,12 @@ export default function ContactPage() {
                   <div>
                     <label
                       htmlFor="phone"
-                      className="block text-lg font-bold text-gray-900 mb-3"
+                      className="block text-base font-bold text-gray-900 mb-2"
                     >
                       Phone Number *
                     </label>
                     <div className="relative">
-                      <Phone className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                       <input
                         type="tel"
                         id="phone"
@@ -391,23 +395,22 @@ export default function ContactPage() {
                         value={formData.phone}
                         onChange={handleInputChange}
                         required
-                        className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:border-amber-500 focus:outline-none transition-colors duration-300 text-lg"
+                        className="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-300 text-base"
                         placeholder="+91 98765 43210"
                       />
                     </div>
                   </div>
                 </div>
-
-                <div className="grid lg:grid-cols-2 gap-6">
+                <div className="grid lg:grid-cols-2 gap-5">
                   <div>
                     <label
                       htmlFor="email"
-                      className="block text-lg font-bold text-gray-900 mb-3"
+                      className="block text-base font-bold text-gray-900 mb-2"
                     >
                       Email Address *
                     </label>
                     <div className="relative">
-                      <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                       <input
                         type="email"
                         id="email"
@@ -415,7 +418,7 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:border-amber-500 focus:outline-none transition-colors duration-300 text-lg"
+                        className="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-300 text-base"
                         placeholder="your.email@example.com"
                       />
                     </div>
@@ -423,29 +426,28 @@ export default function ContactPage() {
                   <div>
                     <label
                       htmlFor="company"
-                      className="block text-lg font-bold text-gray-900 mb-3"
+                      className="block text-base font-bold text-gray-900 mb-2"
                     >
                       Company Name
                     </label>
                     <div className="relative">
-                      <Building className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                       <input
                         type="text"
                         id="company"
                         name="company"
                         value={formData.company}
                         onChange={handleInputChange}
-                        className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:border-amber-500 focus:outline-none transition-colors duration-300 text-lg"
+                        className="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-300 text-base"
                         placeholder="Your company name (optional)"
                       />
                     </div>
                   </div>
                 </div>
-
                 <div>
                   <label
                     htmlFor="subject"
-                    className="block text-lg font-bold text-gray-900 mb-3"
+                    className="block text-base font-bold text-gray-900 mb-2"
                   >
                     Subject *
                   </label>
@@ -456,15 +458,14 @@ export default function ContactPage() {
                     value={formData.subject}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:border-amber-500 focus:outline-none transition-colors duration-300 text-lg"
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-300 text-base"
                     placeholder="Brief subject of your inquiry"
                   />
                 </div>
-
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-lg font-bold text-gray-900 mb-3"
+                    className="block text-base font-bold text-gray-900 mb-2"
                   >
                     Message *
                   </label>
@@ -474,124 +475,159 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={handleInputChange}
                     required
-                    rows={6}
-                    className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:border-amber-500 focus:outline-none transition-colors duration-300 text-lg resize-none"
+                    rows={5} // Reduced rows
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-300 text-base resize-none"
                     placeholder="Please provide details about your inquiry, requirements, or questions..."
                   ></textarea>
                 </div>
-
                 <button
                   type="submit"
-                  className="group w-full px-8 py-5 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-bold rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl text-lg border-2 border-amber-400"
+                  className="group w-full px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl text-base border-2 border-amber-400" // Reduced padding, less rounded, softer shadow, smaller text
                 >
-                  <span className="flex items-center justify-center gap-3">
-                    <Send className="w-6 h-6" />
+                  <span className="flex items-center justify-center gap-2">
+                    {" "}
+                    {/* Reduced gap */}
+                    <Send className="w-5 h-5" /> {/* Smaller icon */}
                     Send Message
-                    <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                    <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />{" "}
+                    {/* Smaller icon */}
                   </span>
                 </button>
               </form>
             </div>
-
-            {/* Additional Information */}
-            <div className="space-y-8">
+            {/* Additional Information (Why Partner with Us & Support Hours) */}
+            <div className="space-y-6">
+              {" "}
+              {/* Reduced vertical space */}
               {/* Why Choose Us */}
-              <div className="bg-gradient-to-br from-amber-50 to-orange-100 rounded-3xl p-8 shadow-xl border-2 border-amber-200">
-                <h3 className="text-3xl font-bold mb-6 text-gray-900">
-                  Why Partner with{" "}
-                  <span className="text-amber-700">Us?</span>
+              <div className="bg-gradient-to-br from-amber-50 to-orange-100 rounded-2xl p-7 shadow-lg border border-amber-200">
+                {" "}
+                {/* Less rounded, reduced padding, softer shadow */}
+                <h3 className="text-2xl font-bold mb-5 text-gray-900">
+                  {" "}
+                  {/* Reduced font size and margin */}
+                  Why Partner with <span className="text-amber-700">Us?</span>
                 </h3>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-amber-600 to-orange-700 rounded-full flex items-center justify-center">
-                      <Award className="w-6 h-6 text-white" />
+                <div className="space-y-3">
+                  {" "}
+                  {/* Reduced vertical space */}
+                  <div className="flex items-start gap-3">
+                    {" "}
+                    {/* Reduced gap, changed to items-start for better alignment */}
+                    <div className="w-10 h-10 bg-gradient-to-br from-amber-600 to-orange-700 rounded-full flex items-center justify-center flex-shrink-0">
+                      {" "}
+                      {/* Smaller, flex-shrink-0 */}
+                      <Award className="w-5 h-5 text-white" />{" "}
+                      {/* Smaller icon */}
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-900">
-                        20+ Years Experience
+                      <h4 className="font-bold text-gray-900 text-base">
+                        {" "}
+                        {/* Reduced font size */}
+                        20+ Years Expertise
                       </h4>
-                      <p className="text-gray-600">
-                        Two decades of expertise in both agriculture and
-                        engineering.
+                      <p className="text-gray-600 text-sm">
+                        {" "}
+                        {/* Reduced font size */}
+                        Two decades of engineering and agricultural machinery
+                        experience.
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-green-600 to-emerald-700 rounded-full flex items-center justify-center">
-                      <Globe className="w-6 h-6 text-white" />
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-green-600 to-emerald-700 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Globe className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-900">Global Reach</h4>
-                      <p className="text-gray-600">
-                        Serving clients in 50+ countries worldwide.
+                      <h4 className="font-bold text-gray-900 text-base">
+                        Global Presence
+                      </h4>{" "}
+                      {/* Renamed for professionalism */}
+                      <p className="text-gray-600 text-sm">
+                        Serving clients in over 50 countries worldwide.
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-full flex items-center justify-center">
-                      <Shield className="w-6 h-6 text-white" />
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Shield className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-900">
-                        Uncompromising Quality
-                      </h4>
-                      <p className="text-gray-600">
-                        ISO certified manufacturing processes ensuring top-tier
-                        products.
+                      <h4 className="font-bold text-gray-900 text-base">
+                        Certified Quality
+                      </h4>{" "}
+                      {/* Renamed for professionalism */}
+                      <p className="text-gray-600 text-sm">
+                        ISO certified manufacturing ensuring top-tier products.
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-red-600 to-pink-700 rounded-full flex items-center justify-center">
-                      <Heart className="w-6 h-6 text-white" />
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-red-600 to-pink-700 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Heart className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-900">
-                        Customer-Centric Approach
-                      </h4>
-                      <p className="text-gray-600">
-                        Dedicated support and comprehensive after-sales service.
+                      <h4 className="font-bold text-gray-900 text-base">
+                        Client-Centric Support
+                      </h4>{" "}
+                      {/* Renamed for professionalism */}
+                      <p className="text-gray-600 text-sm">
+                        Dedicated and comprehensive after-sales service.
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
-
               {/* Support Hours */}
-              <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-3xl p-8 shadow-xl border-2 border-green-200">
-                <h3 className="text-3xl font-bold mb-6 text-gray-900">
+              <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl p-7 shadow-lg border border-green-200">
+                {" "}
+                {/* Less rounded, reduced padding, softer shadow */}
+                <h3 className="text-2xl font-bold mb-5 text-gray-900">
+                  {" "}
+                  {/* Reduced font size and margin */}
                   Support <span className="text-green-700">Hours</span>
                 </h3>
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center py-2 border-b border-green-200">
-                    <span className="font-semibold text-gray-900">
+                <div className="space-y-2.5">
+                  {" "}
+                  {/* Reduced vertical space */}
+                  <div className="flex justify-between items-center py-1.5 border-b border-green-200">
+                    {" "}
+                    {/* Reduced padding */}
+                    <span className="font-semibold text-gray-900 text-base">
+                      {" "}
+                      {/* Reduced font size */}
                       Monday - Friday
                     </span>
-                    <span className="text-green-700 font-bold">
+                    <span className="text-green-700 font-bold text-base">
+                      {" "}
+                      {/* Reduced font size */}
                       9:00 AM - 7:00 PM
                     </span>
                   </div>
-                  <div className="flex justify-between items-center py-2 border-b border-green-200">
-                    <span className="font-semibold text-gray-900">
+                  <div className="flex justify-between items-center py-1.5 border-b border-green-200">
+                    <span className="font-semibold text-gray-900 text-base">
                       Saturday
                     </span>
-                    <span className="text-green-700 font-bold">
+                    <span className="text-green-700 font-bold text-base">
                       9:00 AM - 6:00 PM
                     </span>
                   </div>
-                  <div className="flex justify-between items-center py-2 border-b border-green-200">
-                    <span className="font-semibold text-gray-900">Sunday</span>
-                    <span className="text-green-700 font-bold">
+                  <div className="flex justify-between items-center py-1.5 border-b border-green-200">
+                    <span className="font-semibold text-gray-900 text-base">
+                      Sunday
+                    </span>
+                    <span className="text-green-700 font-bold text-base">
                       10:00 AM - 5:00 PM
                     </span>
                   </div>
-                  <div className="flex justify-between items-center py-2">
-                    <span className="font-semibold text-gray-900">
+                  <div className="flex justify-between items-center py-1.5">
+                    <span className="font-semibold text-gray-900 text-base">
                       Emergency Support
                     </span>
-                    <span className="text-red-600 font-bold">
-                      Available 24/7 (Contact given numbers)
-                    </span>
+                    <span className="text-red-600 font-bold text-base">
+                      Available 24/7 (via direct numbers)
+                    </span>{" "}
+                    {/* Clarified text */}
                   </div>
                 </div>
               </div>
@@ -599,7 +635,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-
     </div>
   );
 }
