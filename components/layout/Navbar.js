@@ -183,6 +183,12 @@ export default function Navbar() {
     return productData[activeCategoryInMenu] || productData.all;
   };
 
+  // Function to handle link clicks in mobile menu
+  const handleMobileLinkClick = () => {
+    setIsMenuOpen(false); // Close the mobile menu
+    window.scrollTo(0, 0); // Scroll to the top of the page
+  };
+
   return (
     <>
       {/* Rich Top Bar with Indian Touch */}
@@ -224,16 +230,16 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="flex justify-between items-center h-20">
             {/* Premium Logo */}
-            <div className="flex items-center space-x-4">
-              <Link href={"/"}>
+            <Link href={"/"}>
+              <div className="flex items-center space-x-4">
                 <Image
                   alt="Shri Shyam Logo"
                   src={"/images/logo-main.png"} // Make sure this path is correct
                   height={20}
                   width={200}
                 />
-              </Link>
-            </div>
+              </div>
+            </Link>
 
             {/* Professional Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-1">
@@ -415,6 +421,7 @@ export default function Navbar() {
                 <Link
                   href="/"
                   className="block px-4 py-3 text-gray-700 hover:text-orange-600 hover:bg-gradient-to-r hover:from-orange-50 hover:to-red-50 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
+                  onClick={handleMobileLinkClick}
                 >
                   Home
                 </Link>
@@ -440,6 +447,7 @@ export default function Navbar() {
                         key={index}
                         href={category.href} // On mobile, clicking the category link takes you to the category page
                         className="block py-2 px-3 text-gray-600 hover:text-orange-600 hover:bg-orange-100 rounded-lg transition-colors duration-200"
+                        onClick={handleMobileLinkClick}
                       >
                         {category.name}
                       </Link>
@@ -447,6 +455,7 @@ export default function Navbar() {
                     <Link
                       href="/products"
                       className="block py-2 px-3 text-orange-600 hover:text-orange-700 hover:bg-orange-100 rounded-lg transition-colors duration-200 font-semibold"
+                      onClick={handleMobileLinkClick}
                     >
                       View All Products &rarr;
                     </Link>
@@ -456,6 +465,7 @@ export default function Navbar() {
                 <Link
                   href="/about"
                   className="block px-4 py-3 text-gray-700 hover:text-orange-600 hover:bg-gradient-to-r hover:from-orange-50 hover:to-red-50 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
+                  onClick={handleMobileLinkClick}
                 >
                   About
                 </Link>
@@ -463,14 +473,15 @@ export default function Navbar() {
                 <Link
                   href="/export"
                   className="flex items-center space-x-2 px-4 py-3 text-gray-700 hover:text-orange-600 hover:bg-gradient-to-r hover:from-orange-50 hover:to-red-50 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
+                  onClick={handleMobileLinkClick}
                 >
-                  <Truck className="w-4 h-4" />
-                  <span>Export</span>
+                  Export{" "}
                 </Link>
 
                 <Link
                   href="/insights"
                   className="block px-4 py-3 text-gray-700 hover:text-orange-600 hover:bg-gradient-to-r hover:from-orange-50 hover:to-red-50 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
+                  onClick={handleMobileLinkClick}
                 >
                   Insights
                 </Link>
@@ -478,6 +489,7 @@ export default function Navbar() {
                 <Link
                   href="/contact"
                   className="block px-4 py-3 text-gray-700 hover:text-orange-600 hover:bg-gradient-to-r hover:from-orange-50 hover:to-red-50 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
+                  onClick={handleMobileLinkClick}
                 >
                   Contact
                 </Link>
@@ -485,7 +497,10 @@ export default function Navbar() {
                 <Link href={"/contact"}>
                   <div className="pt-4">
                     {" "}
-                    <button className="w-full px-6 py-4 bg-gradient-to-r from-orange-500 via-orange-600 to-red-600 text-white font-bold rounded-2xl hover:from-orange-600 hover:via-orange-700 hover:to-red-700 transition-all duration-300 shadow-2xl transform hover:scale-105 hover:-translate-y-1">
+                    <button
+                      className="w-full px-6 py-4 bg-gradient-to-r from-orange-500 via-orange-600 to-red-600 text-white font-bold rounded-2xl hover:from-orange-600 hover:via-orange-700 hover:to-red-700 transition-all duration-300 shadow-2xl transform hover:scale-105 hover:-translate-y-1"
+                      onClick={handleMobileLinkClick}
+                    >
                       Get Quote
                     </button>
                   </div>
