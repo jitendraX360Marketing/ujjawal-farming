@@ -20,6 +20,7 @@ import {
   Award, // For years experience
   Heart, // For customer-centric
 } from "lucide-react";
+import toast, { Toaster } from "react-hot-toast"; // Import toast and Toaster
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -31,6 +32,7 @@ export default function ContactPage() {
     message: "",
     inquiryType: "general",
   });
+  const [loading, setLoading] = useState(false); // New loading state
 
   const handleInputChange = (
     e: React.ChangeEvent<
@@ -45,6 +47,7 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setLoading(true); // Set loading to true when submission starts
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -59,7 +62,7 @@ export default function ContactPage() {
         throw new Error(errorData.error || 'Failed to submit form');
       }
 
-      alert("Thank you for your inquiry! We'll get back to you soon.");
+      toast.success("Thank you for your inquiry! We'll get back to you soon."); // Success toast
       setFormData({
         name: "",
         email: "",
@@ -69,9 +72,11 @@ export default function ContactPage() {
         message: "",
         inquiryType: "general",
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error submitting form:", error);
-      alert("There was an error submitting your inquiry. Please try again.");
+      toast.error(error.message || "There was an error submitting your inquiry. Please try again."); // Error toast
+    } finally {
+      setLoading(false); // Set loading to false when submission ends (success or failure)
     }
   };
 
@@ -162,6 +167,8 @@ export default function ContactPage() {
 
   return (
     <div className="bg-gradient-to-br from-orange-50 via-white to-amber-50 text-gray-900  font-sans">
+      <Toaster position="top-center" reverseOrder={false} /> {/* Add Toaster component */}
+
       {/* Hero Section */}
       <section
         className={`relative min-h-[85vh] flex items-center justify-center overflow-hidden py-20`}
@@ -493,15 +500,42 @@ export default function ContactPage() {
                 </div>
                 <button
                   type="submit"
-                  className="group w-full px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl text-base border-2 border-amber-400" // Reduced padding, less rounded, softer shadow, smaller text
+                  disabled={loading} // Disable button when loading
+                  className="group w-full px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl text-base border-2 border-amber-400 disabled:opacity-50 disabled:cursor-not-allowed" // Added disabled styles
                 >
                   <span className="flex items-center justify-center gap-2">
                     {" "}
                     {/* Reduced gap */}
-                    <Send className="w-5 h-5" /> {/* Smaller icon */}
-                    Send Message
-                    <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />{" "}
-                    {/* Smaller icon */}
+                    {loading ? (
+                      <svg
+                        className="animate-spin h-5 w-5 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
+                      </svg>
+                    ) : (
+                      <Send className="w-5 h-5" />
+                    )}{" "}
+                    {/* Conditional rendering for loading spinner */}
+                    {loading ? "Submitting..." : "Send Message"}
+                    {!loading && (
+                      <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    )}{" "}
+                    {/* Chevron only when not loading */}
                   </span>
                 </button>
               </form>
