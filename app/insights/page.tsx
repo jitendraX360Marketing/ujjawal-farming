@@ -20,11 +20,14 @@ import {
   Search,
   Tag,
 } from "lucide-react";
+import Image from "next/image";
 
 export default function InsightsPage() {
   const [scrollY, setScrollY] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
+  const [blogs, setBlogs] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -32,222 +35,39 @@ export default function InsightsPage() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const blogPosts = [
-    {
-      id: 1,
-      title:
-        "Modern Agriculture Revolution: How Advanced Machinery is Transforming Indian Farming",
-      titleHindi:
-        "आधुनिक कृषि क्रांति: उन्नत मशीनरी कैसे भारतीय कृषि को बदल रही है",
-      excerpt:
-        "Discover how cutting-edge agricultural machinery is revolutionizing traditional farming practices across India, increasing productivity and reducing manual labor.",
-      content:
-        "The agricultural landscape in India is undergoing a massive transformation...",
-      author: "Maliram Ji Jangid",
-      date: "2025-05-28",
-      readTime: "8 min read",
-      views: "2.4K",
-      category: "Technology",
-      image: "agriculture-revolution",
-      tags: ["Modern Farming", "Technology", "Innovation"],
-      featured: true,
-      gradient: "from-green-600 to-emerald-700",
-    },
-    {
-      id: 2,
-      title:
-        "Complete Guide to Panel Board Manufacturing: Quality Standards & Best Practices",
-      titleHindi:
-        "पैनल बोर्ड निर्माण की संपूर्ण गाइड: गुणवत्ता मानक और सर्वोत्तम प्रथाएं",
-      excerpt:
-        "Learn about the essential quality standards, manufacturing processes, and best practices in panel board production for industrial applications.",
-      content:
-        "Panel board manufacturing requires precision, quality control, and adherence to strict standards...",
-      author: "Technical Team",
-      date: "2025-05-25",
-      readTime: "10 min read",
-      views: "1.8K",
-      category: "Manufacturing",
-      image: "panel-manufacturing",
-      tags: ["Panel Boards", "Quality", "Standards"],
-      featured: true,
-      gradient: "from-blue-600 to-indigo-700",
-    },
-    {
-      id: 3,
-      title:
-        "Sustainable Farming Equipment: Building an Eco-Friendly Agricultural Future",
-      titleHindi: "टिकाऊ कृषि उपकरण: पर्यावरण-अनुकूल कृषि भविष्य का निर्माण",
-      excerpt:
-        "Explore how sustainable agricultural equipment is helping farmers reduce environmental impact while maintaining high productivity levels.",
-      content:
-        "Sustainability in agriculture is no longer optional—it's essential for our planet's future...",
-      author: "Environmental Team",
-      date: "2025-05-22",
-      readTime: "7 min read",
-      views: "3.1K",
-      category: "Sustainability",
-      image: "sustainable-farming",
-      tags: ["Sustainability", "Environment", "Green Technology"],
-      featured: false,
-      gradient: "from-emerald-600 to-teal-700",
-    },
-    {
-      id: 4,
-      title:
-        "Powder Coating Technology: Enhancing Durability in Agricultural Machinery",
-      titleHindi: "पाउडर कोटिंग तकनीक: कृषि मशीनरी में स्थायित्व बढ़ाना",
-      excerpt:
-        "Understanding the importance of powder coating in agricultural equipment and how it extends machinery lifespan in harsh farming conditions.",
-      content:
-        "Powder coating has revolutionized the way we protect agricultural machinery from corrosion...",
-      author: "Production Team",
-      date: "2025-05-20",
-      readTime: "6 min read",
-      views: "1.5K",
-      category: "Technology",
-      image: "powder-coating",
-      tags: ["Coating", "Durability", "Protection"],
-      featured: false,
-      gradient: "from-purple-600 to-pink-700",
-    },
-    {
-      id: 5,
-      title:
-        "Global Export Success: Taking Indian Agriculture Machinery to 50+ Countries",
-      titleHindi:
-        "वैश्विक निर्यात सफलता: भारतीय कृषि मशीनरी को 50+ देशों तक पहुंचाना",
-      excerpt:
-        "The journey of expanding Indian-made agricultural machinery to international markets and establishing global trust in quality.",
-      content:
-        "From humble beginnings in 2005 to serving farmers in over 50 countries...",
-      author: "Export Team",
-      date: "2025-05-18",
-      readTime: "9 min read",
-      views: "2.7K",
-      category: "Business",
-      image: "global-export",
-      tags: ["Export", "Global", "Success Story"],
-      featured: false,
-      gradient: "from-orange-600 to-red-700",
-    },
-    {
-      id: 6,
-      title:
-        "Laser Cutting Innovation: Precision Manufacturing in Agricultural Equipment",
-      titleHindi: "लेजर कटिंग नवाचार: कृषि उपकरणों में सटीक विनिर्माण",
-      excerpt:
-        "How laser cutting technology has transformed manufacturing precision and quality in agricultural machinery production.",
-      content:
-        "The introduction of laser cutting technology in 2012 marked a turning point...",
-      author: "Engineering Team",
-      date: "2025-05-15",
-      readTime: "8 min read",
-      views: "1.9K",
-      category: "Technology",
-      image: "laser-cutting",
-      tags: ["Laser Technology", "Precision", "Manufacturing"],
-      featured: false,
-      gradient: "from-cyan-600 to-blue-700",
-    },
-    {
-      id: 7,
-      title:
-        "Farmer Success Stories: Real Impact of Quality Agricultural Machinery",
-      titleHindi:
-        "किसान सफलता की कहानियां: गुणवत्तापूर्ण कृषि मशीनरी का वास्तविक प्रभाव",
-      excerpt:
-        "Inspiring stories from farmers who have transformed their agricultural practices and increased productivity with modern machinery.",
-      content:
-        "Behind every piece of machinery we manufacture are real farmers with real stories...",
-      author: "Customer Relations",
-      date: "2025-05-12",
-      readTime: "11 min read",
-      views: "4.2K",
-      category: "Success Stories",
-      image: "farmer-success",
-      tags: ["Farmers", "Success", "Testimonials"],
-      featured: true,
-      gradient: "from-amber-600 to-yellow-700",
-    },
-    {
-      id: 8,
-      title:
-        "Quality Assurance in Manufacturing: Maintaining 99% Quality Standards",
-      titleHindi:
-        "विनिर्माण में गुणवत्ता आश्वासन: 99% गुणवत्ता मानकों को बनाए रखना",
-      excerpt:
-        "Deep dive into our quality assurance processes and how we maintain industry-leading standards in manufacturing.",
-      content:
-        "Quality is not just a promise—it's a commitment that drives every aspect of our manufacturing...",
-      author: "Quality Team",
-      date: "2025-05-10",
-      readTime: "7 min read",
-      views: "2.1K",
-      category: "Quality",
-      image: "quality-assurance",
-      tags: ["Quality", "Standards", "Manufacturing"],
-      featured: false,
-      gradient: "from-red-600 to-rose-700",
-    },
-    {
-      id: 9,
-      title: "Future of Agriculture: AI and IoT Integration in Farm Equipment",
-      titleHindi: "कृषि का भविष्य: कृषि उपकरणों में AI और IoT का एकीकरण",
-      excerpt:
-        "Exploring the future trends of artificial intelligence and Internet of Things in agricultural machinery and smart farming solutions.",
-      content:
-        "The future of agriculture lies in the seamless integration of technology with traditional farming...",
-      author: "Innovation Team",
-      date: "2025-05-08",
-      readTime: "12 min read",
-      views: "3.8K",
-      category: "Innovation",
-      image: "future-agriculture",
-      tags: ["AI", "IoT", "Future Tech"],
-      featured: false,
-      gradient: "from-violet-600 to-purple-700",
-    },
-    {
-      id: 10,
-      title:
-        "20 Years of Excellence: Celebrating Two Decades of Agricultural Innovation",
-      titleHindi: "20 साल की उत्कृष्टता: कृषि नवाचार के दो दशकों का जश्न",
-      excerpt:
-        "Reflecting on our 20-year journey from a small panel manufacturing unit to a global agricultural machinery leader.",
-      content:
-        "As we celebrate 20 years of Shri Shyam Engineering, we look back at the milestones...",
-      author: "Maliram Ji Jangid",
-      date: "2025-05-05",
-      readTime: "15 min read",
-      views: "5.6K",
-      category: "Company",
-      image: "company-milestone",
-      tags: ["Milestone", "Journey", "Celebration"],
-      featured: true,
-      gradient: "from-indigo-600 to-blue-700",
-    },
-  ];
+  useEffect(() => {
+    async function fetchBlogs() {
+      setLoading(true);
+      try {
+        const res = await fetch("/api/insights");
+        const data = await res.json();
+        setBlogs(data.blogs || []);
+        console.log(data);
+      } catch (e) {
+        setBlogs([]);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchBlogs();
+  }, []);
 
   const categories = [
     "All",
-    "Technology",
-    "Manufacturing",
-    "Sustainability",
-    "Business",
-    "Success Stories",
-    "Quality",
-    "Innovation",
-    "Company",
+    ...Array.from(new Set(blogs.map((post) => post.category).filter(Boolean))),
   ];
 
-  const filteredPosts = blogPosts.filter((post) => {
+  // Only show posts with status 'active' (case-insensitive, fallback to true if no status field)
+  const onlyActive = blogs.filter(
+    (post) => !post.status || String(post.status).toLowerCase() === "active"
+  );
+  // Use onlyActive instead of blogs/regularPosts for rendering
+  const filteredPosts = onlyActive.filter((post) => {
     const matchesCategory =
       selectedCategory === "All" || post.category === selectedCategory;
     const matchesSearch =
-      post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      post.titleHindi.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      post.tags.some((tag) =>
+      post.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.tags?.some((tag: string) =>
         tag.toLowerCase().includes(searchTerm.toLowerCase())
       );
     return matchesCategory && matchesSearch;
@@ -255,6 +75,14 @@ export default function InsightsPage() {
 
   const featuredPosts = filteredPosts.filter((post) => post.featured);
   const regularPosts = filteredPosts.filter((post) => !post.featured);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-xl font-bold text-amber-700">
+        Loading Insights...
+      </div>
+    );
+  }
 
   return (
     <div className="bg-gradient-to-br from-orange-50 via-white to-amber-50 text-gray-900 min-h-screen">
@@ -364,104 +192,31 @@ export default function InsightsPage() {
         </div>
       </section>
 
-      {/* Featured Articles Section */}
-      {featuredPosts.length > 0 && (
-        <section className="py-20 px-6 bg-gradient-to-b from-white to-amber-50">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-5xl font-black mb-4 text-gray-900">
-                Featured{" "}
-                <span className="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
-                  Articles
-                </span>
-              </h2>
-              <p className="text-xl text-gray-600">
-                Must-read insights from our experts
-              </p>
-            </div>
-
-            <div className="grid lg:grid-cols-2 gap-8">
-              {featuredPosts.slice(0, 2).map((post, index) => (
-                <article
-                  key={post.id}
-                  className="group bg-white rounded-3xl overflow-hidden shadow-xl border-2 border-amber-200 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500"
-                >
-                  <div
-                    className={`h-64 bg-gradient-to-br ${post.gradient} relative overflow-hidden`}
-                  >
-                    <div className="absolute inset-0 bg-black/20"></div>
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-white/90 text-gray-800 px-4 py-2 rounded-full text-sm font-bold">
-                        {post.category}
-                      </span>
-                    </div>
-                    <div className="absolute bottom-4 right-4">
-                      <span className="bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-bold">
-                        Featured
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="p-8">
-                    <div className="flex items-center gap-4 mb-4 text-sm text-gray-500">
-                      <div className="flex items-center gap-2">
-                        <User className="w-4 h-4" />
-                        {post.author}
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-4 h-4" />
-                        {new Date(post.date).toLocaleDateString()}
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Clock className="w-4 h-4" />
-                        {post.readTime}
-                      </div>
-                    </div>
-
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-amber-700 transition-colors duration-300">
-                      {post.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm mb-2 opacity-75">
-                      {post.titleHindi}
-                    </p>
-                    <p className="text-gray-700 leading-relaxed mb-6">
-                      {post.excerpt}
-                    </p>
-
-                    <div className="flex items-center justify-between">
-                      <div className="flex gap-2">
-                        {post.tags.slice(0, 2).map((tag) => (
-                          <span
-                            key={tag}
-                            className="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-medium"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                      <button className="flex items-center gap-2 text-amber-600 font-semibold hover:text-amber-700 transition-colors duration-300">
-                        Read More
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                      </button>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* All Articles Section */}
       <section className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-5xl font-black mb-4 text-gray-900">
               Latest{" "}
-              <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-orange-600 to-orange-700 bg-clip-text text-transparent">
                 Articles
               </span>
             </h2>
+            <div className="flex items-center justify-center gap-4 mb-3">
+              {" "}
+              {/* Reduced gap and bottom margin */}
+              <div className="h-0.5 w-20 bg-gradient-to-r from-transparent via-amber-500 to-transparent"></div>{" "}
+              {/* Shorter width */}
+              <div className="flex gap-1.5">
+                {" "}
+                {/* Smaller gap for dots */}
+                <div className="w-2.5 h-2.5 bg-amber-500 rounded-full"></div>{" "}
+                {/* Smaller dots */}
+                <div className="w-2.5 h-2.5 bg-orange-500 rounded-full"></div>
+                <div className="w-2.5 h-2.5 bg-red-500 rounded-full"></div>
+              </div>
+              <div className="h-0.5 w-20 bg-gradient-to-r from-transparent via-amber-500 to-transparent"></div>
+            </div>
             <p className="text-xl text-gray-600">
               Stay updated with industry trends and innovations
             </p>
@@ -470,18 +225,20 @@ export default function InsightsPage() {
           <div className="grid lg:grid-cols-3 gap-8">
             {regularPosts.map((post) => (
               <article
-                key={post.id}
+                key={post._id || post.id}
                 className="group bg-gradient-to-br from-gray-50 to-white rounded-2xl overflow-hidden shadow-lg border-2 border-gray-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               >
-                <div
-                  className={`h-48 bg-gradient-to-br ${post.gradient} relative overflow-hidden`}
-                >
+                <div className="h-48 relative overflow-hidden">
+                  {post.imageUrl && (
+                    <Image
+                      fill
+                      src={post.imageUrl}
+                      alt={post.title}
+                      className="object-cover w-full h-full"
+                      loading="lazy"
+                    />
+                  )}
                   <div className="absolute inset-0 bg-black/10"></div>
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-white/90 text-gray-800 px-3 py-1 rounded-full text-xs font-bold">
-                      {post.category}
-                    </span>
-                  </div>
                   <div className="absolute bottom-4 right-4 flex items-center gap-2 text-white text-xs">
                     <Eye className="w-3 h-3" />
                     {post.views}
@@ -501,7 +258,7 @@ export default function InsightsPage() {
                     {post.title}
                   </h3>
                   <p className="text-gray-600 text-xs mb-3 opacity-75 line-clamp-1">
-                    {post.titleHindi}
+                    {post.title}
                   </p>
                   <p className="text-gray-700 text-sm leading-relaxed mb-4 line-clamp-3">
                     {post.excerpt}
@@ -509,7 +266,10 @@ export default function InsightsPage() {
 
                   <div className="flex items-center justify-between">
                     <div className="flex flex-wrap gap-1">
-                      {post.tags.slice(0, 2).map((tag) => (
+                      {(post.tags && Array.isArray(post.tags)
+                        ? post.tags.slice(0, 2)
+                        : []
+                      ).map((tag: string) => (
                         <span
                           key={tag}
                           className="bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs"

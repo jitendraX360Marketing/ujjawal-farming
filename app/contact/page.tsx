@@ -21,6 +21,7 @@ import {
   Heart, // For customer-centric
 } from "lucide-react";
 import toast, { Toaster } from "react-hot-toast"; // Import toast and Toaster
+import Image from "next/image";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -49,17 +50,17 @@ export default function ContactPage() {
     e.preventDefault();
     setLoading(true); // Set loading to true when submission starts
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      const response = await fetch("/api/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to submit form');
+        throw new Error(errorData.error || "Failed to submit form");
       }
 
       toast.success("Thank you for your inquiry! We'll get back to you soon."); // Success toast
@@ -74,7 +75,10 @@ export default function ContactPage() {
       });
     } catch (error: any) {
       console.error("Error submitting form:", error);
-      toast.error(error.message || "There was an error submitting your inquiry. Please try again."); // Error toast
+      toast.error(
+        error.message ||
+          "There was an error submitting your inquiry. Please try again."
+      ); // Error toast
     } finally {
       setLoading(false); // Set loading to false when submission ends (success or failure)
     }
@@ -167,8 +171,8 @@ export default function ContactPage() {
 
   return (
     <div className="bg-gradient-to-br from-orange-50 via-white to-amber-50 text-gray-900  font-sans">
-      <Toaster position="top-center" reverseOrder={false} /> {/* Add Toaster component */}
-
+      <Toaster position="top-center" reverseOrder={false} />{" "}
+      {/* Add Toaster component */}
       {/* Hero Section */}
       <section
         className={`relative min-h-[85vh] flex items-center justify-center overflow-hidden py-20`}
@@ -249,7 +253,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-
       {/* --- */}
       {/* Contact Information Section */}
       <section className={`py-20 px-6 bg-gradient-to-b from-white to-amber-50`}>
@@ -304,7 +307,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-
       {/* --- */}
       {/* Contact Form Section */}
       <section className={`py-20 px-6 bg-white`}>
@@ -680,6 +682,17 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+      <div>
+        <h1>Hello </h1>
+        <Image
+          src={
+            "https://ik.imagekit.io/yourcompany/default-image.jpg?updatedAt=1750404370440"
+          }
+          alt="Image"
+          height={200}
+          width={200}
+        />
+      </div>
     </div>
   );
 }
