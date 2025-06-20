@@ -18,138 +18,122 @@ import Image from "next/image";
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProductsMenuOpen, setIsProductsMenuOpen] = useState(false);
-  // New state to manage the currently active category in the mega-menu for image display
-  const [activeCategoryInMenu, setActiveCategoryInMenu] = useState("all"); // 'all' for default images
+  // NEW: Set initial activeCategoryInMenu to 'agriculture-machinery'
+  const [activeCategoryInMenu, setActiveCategoryInMenu] = useState(
+    "agriculture-machinery"
+  );
 
   // Define your product data with images, organized by category
   const productData = {
+    // You can keep 'all' if you still want a fallback or a truly "all" state
+    // but the initial state will now directly point to 'agriculture-machinery'
     all: [
-      // Default images for "All Products" or initial open
       {
         name: "Agri Machine 1",
-        imageSrc:
-          "https://via.placeholder.com/180x120/FFDDC1/804000?text=Agri+Machinery",
+        imageSrc: "/images/demo-prd.png",
         href: "/products/agriculture-machinery",
       },
       {
         name: "Electric Panel A",
-        imageSrc:
-          "https://via.placeholder.com/180x120/FFDDC1/804000?text=Electric+Panel",
+        imageSrc: "/images/demo-prd.png",
         href: "/products/electric-panel",
       },
       {
         name: "Laser Cut Part",
-        imageSrc:
-          "https://via.placeholder.com/180x120/FFDDC1/804000?text=Laser+Cutting",
+        imageSrc: "/images/demo-prd.png",
         href: "/products/laser-cutting-service",
       },
       {
         name: "Powder Coated Item",
-        imageSrc:
-          "https://via.placeholder.com/180x120/FFDDC1/804000?text=Powder+Coating",
+        imageSrc: "/images/demo-prd.png",
         href: "/products/powder-coating-service",
       },
     ],
     "agriculture-machinery": [
       {
         name: "Tractor Attachment",
-        imageSrc:
-          "https://via.placeholder.com/180x120/A8DADC/2F4F4F?text=Tractor",
+        imageSrc: "/images/demo-prd.png",
         href: "/products/agriculture-machinery/tractor-attachment",
       },
       {
         name: "Harvester Blade",
-        imageSrc:
-          "https://via.placeholder.com/180x120/A8DADC/2F4F4F?text=Harvester",
+        imageSrc: "/images/demo-prd.png",
         href: "/products/agriculture-machinery/harvester-blade",
       },
       {
         name: "Plow System",
-        imageSrc: "https://via.placeholder.com/180x120/A8DADC/2F4F4F?text=Plow",
+        imageSrc: "/images/demo-prd.png",
         href: "/products/agriculture-machinery/plow-system",
       },
       {
         name: "Sprayer Nozzle",
-        imageSrc:
-          "https://via.placeholder.com/180x120/A8DADC/2F4F4F?text=Sprayer",
+        imageSrc: "/images/demo-prd.png",
         href: "/products/agriculture-machinery/sprayer-nozzle",
       },
     ],
     "electric-panel": [
       {
         name: "Control Box",
-        imageSrc:
-          "https://via.placeholder.com/180x120/FAD0C4/8B0000?text=Control+Box",
+        imageSrc: "/images/demo-prd.png",
         href: "/products/electric-panel/control-box",
       },
       {
         name: "Distribution Panel",
-        imageSrc:
-          "https://via.placeholder.com/180x120/FAD0C4/8B0000?text=Distribution",
+        imageSrc: "/images/demo-prd.png",
         href: "/products/electric-panel/distribution-panel",
       },
       {
         name: "Circuit Breaker",
-        imageSrc:
-          "https://via.placeholder.com/180x120/FAD0C4/8B0000?text=Circuit+Breaker",
+        imageSrc: "/images/demo-prd.png",
         href: "/products/electric-panel/circuit-breaker",
       },
       {
         name: "Motor Starter",
-        imageSrc:
-          "https://via.placeholder.com/180x120/FAD0C4/8B0000?text=Motor+Starter",
+        imageSrc: "/images/demo-prd.png",
         href: "/products/electric-panel/motor-starter",
       },
     ],
     "laser-cutting-service": [
       {
         name: "Metal Art",
-        imageSrc:
-          "https://via.placeholder.com/180x120/BCEAD5/006400?text=Metal+Art",
+        imageSrc: "/images/demo-prd.png",
         href: "/products/laser-cutting-service/metal-art",
       },
       {
         name: "Precision Gears",
-        imageSrc:
-          "https://via.placeholder.com/180x120/BCEAD5/006400?text=Gears",
+        imageSrc: "/images/demo-prd.png",
         href: "/products/laser-cutting-service/precision-gears",
       },
       {
         name: "Custom Brackets",
-        imageSrc:
-          "https://via.placeholder.com/180x120/BCEAD5/006400?text=Brackets",
+        imageSrc: "/images/demo-prd.png",
         href: "/products/laser-cutting-service/custom-brackets",
       },
       {
         name: "Architectural Decor",
-        imageSrc:
-          "https://via.placeholder.com/180x120/BCEAD5/006400?text=Decor",
+        imageSrc: "/images/demo-prd.png",
         href: "/products/laser-cutting-service/architectural-decor",
       },
     ],
     "powder-coating-service": [
       {
         name: "Red Finish",
-        imageSrc:
-          "https://via.placeholder.com/180x120/FDD835/E65100?text=Red+Coating",
+        imageSrc: "/images/demo-prd.png",
         href: "/products/powder-coating-service/red-finish",
       },
       {
         name: "Blue Finish",
-        imageSrc:
-          "https://via.placeholder.com/180x120/FDD835/E65100?text=Blue+Coating",
+        imageSrc: "/images/demo-prd.png",
         href: "/products/powder-coating-service/blue-finish",
       },
       {
         name: "Glossy Black",
-        imageSrc:
-          "https://via.placeholder.com/180x120/FDD835/E65100?text=Glossy+Black",
+        imageSrc: "/images/demo-prd.png",
         href: "/products/powder-coating-service/glossy-black",
       },
       {
         name: "Matte White",
-        imageSrc:
-          "https://via.placeholder.com/180x120/FDD835/E65100?text=Matte+White",
+        imageSrc: "/images/demo-prd.png",
         href: "/products/powder-coating-service/matte-white",
       },
     ],
@@ -180,7 +164,11 @@ export default function Navbar() {
 
   // Function to get images for the active category
   const getImagesForActiveCategory = () => {
-    return productData[activeCategoryInMenu] || productData.all;
+    // If the active category isn't found in productData, default to 'all' or a specific category.
+    // Given the initial state is now 'agriculture-machinery', this will work directly.
+    return (
+      productData[activeCategoryInMenu] || productData["agriculture-machinery"]
+    );
   };
 
   // Function to handle link clicks in mobile menu
@@ -255,7 +243,8 @@ export default function Navbar() {
                 className="relative"
                 onMouseEnter={() => {
                   setIsProductsMenuOpen(true);
-                  setActiveCategoryInMenu("all"); // Reset to 'all' or default on hover enter
+                  // NEW: Set to 'agriculture-machinery' when menu opens
+                  setActiveCategoryInMenu("agriculture-machinery");
                 }}
                 onMouseLeave={() => setIsProductsMenuOpen(false)}
               >
@@ -273,6 +262,7 @@ export default function Navbar() {
                     <div className="flex flex-col">
                       {/* Product Images/Showcase - Top Row (Horizontal Layout) */}
                       <div className="flex justify-around items-start gap-4 mb-6">
+                        {/* Images will now be from 'agriculture-machinery' by default */}
                         {getImagesForActiveCategory().map((product, index) => (
                           <Link
                             href={product.href}
@@ -307,12 +297,10 @@ export default function Navbar() {
                               .slice(0, Math.ceil(productCategories.length / 2))
                               .map((category, index) => (
                                 <li key={index}>
-                                  {/* Use button or div instead of Link if only changing images */}
                                   <button
                                     onClick={() =>
                                       setActiveCategoryInMenu(category.slug)
                                     }
-                                    // Optional: Add styling to indicate active category
                                     className={`block w-full text-left py-1.5 px-3 rounded-md transition-colors duration-200 ${
                                       activeCategoryInMenu === category.slug
                                         ? "bg-orange-100 text-orange-700 font-semibold"
@@ -344,7 +332,6 @@ export default function Navbar() {
                                 </li>
                               ))}
                             <li>
-                              {/* This link will still navigate to the main products page */}
                               <Link
                                 href="/products"
                                 className="block py-1.5 px-3 text-orange-600 hover:text-orange-700 hover:bg-orange-50 rounded-md transition-colors duration-200 font-semibold"
