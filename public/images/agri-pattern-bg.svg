@@ -1,0 +1,32 @@
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #e0e0e0; /* Very light gray */
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1px;
+      }
+    </style>
+  </defs>
+  <path class="cls-1" d="M50 100 L70 100 L75 80 L65 80 L60 100 Z"/>
+  <circle class="cls-1" cx="60" cy="110" r="10"/>
+  <circle class="cls-1" cx="85" cy="105" r="15"/>
+
+  <path class="cls-1" d="M150 100 L170 100 L165 110 L145 110 L150 100 Z"/>
+  <path class="cls-1" d="M160 110 L160 120 L155 125 L165 125 L160 120 Z"/>
+
+  <path class="cls-1" d="M220 100 Q230 90 240 100 L245 105 L235 115 L220 100 Z"/>
+
+  <g transform="translate(100 150) rotate(10)">
+    <path class="cls-1" d="M50 100 L70 100 L75 80 L65 80 L60 100 Z"/>
+    <circle class="cls-1" cx="60" cy="110" r="10"/>
+    <circle class="cls-1" cx="85" cy="105" r="15"/>
+  </g>
+
+  <g transform="translate(-50 50) rotate(-5)">
+    <path class="cls-1" d="M150 100 L170 100 L165 110 L145 110 L150 100 Z"/>
+    <path class="cls-1" d="M160 110 L160 120 L155 125 L165 125 L160 120 Z"/>
+  </g>
+</svg>
