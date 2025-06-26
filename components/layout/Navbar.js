@@ -27,116 +27,73 @@ export default function Navbar() {
   const productData = {
     // You can keep 'all' if you still want a fallback or a truly "all" state
     // but the initial state will now directly point to 'agriculture-machinery'
-    all: [
-      {
-        name: "Agri Machine 1",
-        imageSrc: "/images/demo-prd.png",
-        href: "/products/agriculture-machinery",
-      },
-      {
-        name: "Electric Panel A",
-        imageSrc: "/images/demo-prd.png",
-        href: "/products/electric-panel",
-      },
-      {
-        name: "Laser Cut Part",
-        imageSrc: "/images/demo-prd.png",
-        href: "/products/laser-cutting-service",
-      },
-      {
-        name: "Powder Coated Item",
-        imageSrc: "/images/demo-prd.png",
-        href: "/products/powder-coating-service",
-      },
-    ],
+
     "agriculture-machinery": [
       {
-        name: "Tractor Attachment",
-        imageSrc: "/images/demo-prd.png",
-        href: "/products/agriculture-machinery/tractor-attachment",
+        name: "Rotavator",
+        imageSrc:
+          "/images/Products/Agriculture Machinery/Rotavator/main-photo.png",
+        href: "/products/agriculture-machinery/rotavator",
       },
       {
-        name: "Harvester Blade",
-        imageSrc: "/images/demo-prd.png",
-        href: "/products/agriculture-machinery/harvester-blade",
+        name: "Chaff Cutter Toka",
+        imageSrc:
+          "/images/Products/Agriculture Machinery/Chaff Cutter Toka/main-img.png",
+        href: "/products/agriculture-machinery/chaff-cutter-toka",
       },
       {
-        name: "Plow System",
-        imageSrc: "/images/demo-prd.png",
-        href: "/products/agriculture-machinery/plow-system",
+        name: "Chaff Cutter",
+        imageSrc:
+          "/images/Products/Agriculture Machinery/Chaff Cutter/main-img.png",
+        href: "/products/agriculture-machinery/chaff-cutter",
       },
       {
-        name: "Sprayer Nozzle",
-        imageSrc: "/images/demo-prd.png",
-        href: "/products/agriculture-machinery/sprayer-nozzle",
+        name: "Plaugh",
+        imageSrc: "/images/Products/Agriculture Machinery/Plaugh/img1.png",
+        href: "/products/agriculture-machinery/plaugh",
       },
     ],
     "electric-panel": [
       {
         name: "Control Box",
-        imageSrc: "/images/demo-prd.png",
+        imageSrc: "/images/Products/Electric Panel/main-img.JPG",
         href: "/products/electric-panel/control-box",
       },
       {
         name: "Distribution Panel",
-        imageSrc: "/images/demo-prd.png",
+        imageSrc: "/images/Products/Electric Panel/main-img.JPG",
         href: "/products/electric-panel/distribution-panel",
       },
       {
         name: "Circuit Breaker",
-        imageSrc: "/images/demo-prd.png",
+        imageSrc: "/images/Products/Electric Panel/main-img.JPG",
         href: "/products/electric-panel/circuit-breaker",
       },
       {
         name: "Motor Starter",
-        imageSrc: "/images/demo-prd.png",
+        imageSrc: "/images/Products/Electric Panel/main-img.JPG",
         href: "/products/electric-panel/motor-starter",
       },
     ],
     "laser-cutting-service": [
       {
-        name: "Metal Art",
-        imageSrc: "/images/demo-prd.png",
-        href: "/products/laser-cutting-service/metal-art",
+        name: "12kw Laser Cutting",
+        imageSrc: "/images/Products/Laser Cutting Service/LCS1.JPG",
+        href: "/products/laser-cutting-service/12kw",
+        images: [
+          "/images/Laser Cutting Service/LCS1.JPG",
+          "/images/Laser Cutting Service/LCS2.JPG",
+          "/images/Laser Cutting Service/LCS3.JPG",
+        ],
       },
       {
-        name: "Precision Gears",
-        imageSrc: "/images/demo-prd.png",
-        href: "/products/laser-cutting-service/precision-gears",
-      },
-      {
-        name: "Custom Brackets",
-        imageSrc: "/images/demo-prd.png",
-        href: "/products/laser-cutting-service/custom-brackets",
-      },
-      {
-        name: "Architectural Decor",
-        imageSrc: "/images/demo-prd.png",
-        href: "/products/laser-cutting-service/architectural-decor",
+        name: "6kw Laser Cutting",
+        imageSrc: "/images/Products/Laser Cutting Service/LCS4.JPG",
+        href: "/products/laser-cutting-service/6kw",
+        images: ["/images/Laser Cutting Service/LCS4.JPG"],
       },
     ],
-    "powder-coating-service": [
-      {
-        name: "Red Finish",
-        imageSrc: "/images/demo-prd.png",
-        href: "/products/powder-coating-service/red-finish",
-      },
-      {
-        name: "Blue Finish",
-        imageSrc: "/images/demo-prd.png",
-        href: "/products/powder-coating-service/blue-finish",
-      },
-      {
-        name: "Glossy Black",
-        imageSrc: "/images/demo-prd.png",
-        href: "/products/powder-coating-service/glossy-black",
-      },
-      {
-        name: "Matte White",
-        imageSrc: "/images/demo-prd.png",
-        href: "/products/powder-coating-service/matte-white",
-      },
-    ],
+    // powder-coating-service category removed
   };
 
   const productCategories = [
@@ -155,11 +112,7 @@ export default function Navbar() {
       slug: "laser-cutting-service",
       href: "/products/laser-cutting-service",
     },
-    {
-      name: "Powder Coating Service",
-      slug: "powder-coating-service",
-      href: "/products/powder-coating-service",
-    },
+    // Powder Coating Service removed
   ];
 
   // Function to get images for the active category
