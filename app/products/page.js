@@ -3,172 +3,7 @@
 import Link from "next/link";
 import { useState, useMemo } from "react";
 import { FaWhatsapp, FaRegEnvelope } from "react-icons/fa"; // Using react-icons for WhatsApp and Email icons
-
-const productCategories = [
-  {
-    name: "Agriculture Machinery",
-    slug: "agriculture-machinery",
-  },
-  {
-    name: "Electric Panel",
-    slug: "electric-panel",
-  },
-  {
-    name: "Laser Cutting Service",
-    slug: "laser-cutting-service",
-  },
-  {
-    name: "Powder Coating Service",
-    slug: "powder-coating-service",
-  },
-];
-
-const allProducts = [
-  {
-    name: "Tractor Attachment",
-    slug: "tractor-attachment",
-    category: "agriculture-machinery",
-    image: "/images/demo-prd.png",
-    price: 15000,
-    description:
-      "Durable and efficient tractor attachment designed for various agricultural tasks, improving productivity and reducing manual labor. Ideal for plowing, tilling, and planting operations. Built with high-grade steel for long-lasting performance in harsh conditions.",
-  },
-  {
-    name: "Harvester Blade",
-    slug: "harvester-blade",
-    category: "agriculture-machinery",
-    image: "/images/demo-prd.png",
-    price: 2500,
-    description:
-      "High-quality, sharp harvester blade for clean and precise cutting. Ensures minimal crop damage and maximum efficiency during harvest. Made from hardened steel for superior wear resistance and extended sharpness retention.",
-  },
-  {
-    name: "Plow System",
-    slug: "plow-system",
-    category: "agriculture-machinery",
-    image: "/images/demo-prd.png",
-    price: 25000,
-    description:
-      "Robust plow system for deep tilling and soil preparation. Enhances soil aeration and nutrient distribution for better crop yield. Features adjustable depth and angle for versatile use across different soil types.",
-  },
-  {
-    name: "Sprayer Nozzle",
-    slug: "sprayer-nozzle",
-    category: "agriculture-machinery",
-    image: "/images/demo-prd.png",
-    price: 350,
-    description:
-      "Precision sprayer nozzle for even distribution of pesticides and fertilizers. Minimizes waste and ensures effective coverage. Available in various spray patterns to suit different application needs.",
-  },
-  {
-    name: "Control Box",
-    slug: "control-box",
-    category: "electric-panel",
-    image: "/images/demo-prd.png",
-    price: 8000,
-    description:
-      "Customizable electric control box for industrial and commercial applications. Ensures safe and efficient operation of machinery. Designed with high-quality components for reliability and longevity.",
-  },
-  {
-    name: "Distribution Panel",
-    slug: "distribution-panel",
-    category: "electric-panel",
-    image: "/images/demo-prd.png",
-    price: 12000,
-    description:
-      "Compact and robust electrical distribution panel for safe power management. Ideal for residential, commercial, and industrial setups. Equipped with circuit breakers and protective devices for enhanced safety.",
-  },
-  {
-    name: "Circuit Breaker",
-    slug: "circuit-breaker",
-    category: "electric-panel",
-    image: "/images/demo-prd.png",
-    price: 1500,
-    description:
-      "High-performance circuit breaker for overload and short-circuit protection. Essential for electrical safety in any installation. Available in various ampere ratings to meet specific requirements.",
-  },
-  {
-    name: "Motor Starter",
-    slug: "motor-starter",
-    category: "electric-panel",
-    image: "/images/demo-prd.png",
-    price: 4000,
-    description:
-      "Reliable motor starter for smooth and controlled operation of electric motors. Protects motors from damage due to overcurrent and phase loss. Easy to install and maintain.",
-  },
-  {
-    name: "Metal Art",
-    slug: "metal-art",
-    category: "laser-cutting-service",
-    image: "/images/demo-prd.png",
-    price: 2092, // Use null for custom quote products
-    description:
-      "Bespoke metal art creations using advanced laser cutting technology. Perfect for decorative purposes, signage, or unique gifts. Unleash your creativity with precision-cut designs in various metals.",
-  },
-  {
-    name: "Precision Gears",
-    slug: "precision-gears",
-    category: "laser-cutting-service",
-    image: "/images/demo-prd.png",
-    price: 2827,
-    description:
-      "Manufacture of high-precision gears with intricate designs using laser cutting. Ensures perfect fit and smooth operation in machinery. Ideal for industries requiring exact specifications and tight tolerances.",
-  },
-  {
-    name: "Custom Brackets",
-    slug: "custom-brackets",
-    category: "laser-cutting-service",
-    image: "/images/demo-prd.png",
-    price: 9821,
-    description:
-      "Fabrication of custom brackets to exact specifications. Ideal for industrial, automotive, or architectural applications. Offers superior strength and durability tailored to your project needs.",
-  },
-  {
-    name: "Architectural Decor",
-    slug: "architectural-decor",
-    category: "laser-cutting-service",
-    image: "/images/demo-prd.png",
-    price: 9876,
-    description:
-      "Innovative architectural decorative elements crafted with precision laser cutting. Add a unique touch to building facades, interiors, and landscapes. Available in various designs and materials.",
-  },
-  {
-    name: "Red Finish",
-    slug: "red-finish",
-    category: "powder-coating-service",
-    image: "/images/demo-prd.png",
-    price: 2321,
-    description:
-      "Vibrant red powder coating for a durable and aesthetically pleasing finish. Provides excellent resistance against corrosion, scratches, and fading. Perfect for adding a bold statement to your products.",
-  },
-  {
-    name: "Blue Finish",
-    slug: "blue-finish",
-    category: "powder-coating-service",
-    image: "/images/demo-prd.png",
-    price: 2212,
-    description:
-      "Smooth blue powder coating for a resilient and attractive surface. Offers superior protection and a consistent color application. Ideal for components requiring a durable and visually appealing finish.",
-  },
-  {
-    name: "Glossy Black",
-    slug: "glossy-black",
-    category: "powder-coating-service",
-    image: "/images/demo-prd.png",
-    price: 7654,
-    description:
-      "Elegant glossy black powder coating for a sleek and sophisticated look. Provides exceptional durability and a deep, reflective finish. A popular choice for a wide range of industrial and consumer products.",
-  },
-  {
-    name: "Matte White",
-    slug: "matte-white",
-    category: "powder-coating-service",
-    image: "/images/demo-prd.png",
-    price: 7654,
-    description:
-      "Clean matte white powder coating for a modern and subtle aesthetic. Offers a non-reflective, smooth finish with excellent protective properties. Perfect for applications where a minimalist look is desired.",
-  },
-];
+import { productData, allProductsFlat } from "../../data/products";
 
 export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -178,7 +13,7 @@ export default function ProductsPage() {
   const [sortBy, setSortBy] = useState("default"); // 'default', 'price-asc', 'price-desc', 'name-asc', 'name-desc'
 
   const filteredAndSortedProducts = useMemo(() => {
-    let products = [...allProducts]; // Create a mutable copy
+    let products = [...allProductsFlat]; // Create a mutable copy
 
     // 1. Filter by Category
     if (selectedCategory !== "all") {
@@ -385,7 +220,7 @@ export default function ProductsPage() {
                     All Products
                   </button>
                 </li>
-                {productCategories.map((category) => (
+                {productData.map((category) => (
                   <li key={category.slug} className="mb-2">
                     <button
                       onClick={() => setSelectedCategory(category.slug)}
@@ -450,7 +285,7 @@ export default function ProductsPage() {
                     <div className="relative w-full h-48 bg-gray-100 overflow-hidden">
                       {/* Using Next.js Image component for optimization in a real app */}
                       <img
-                        src={product.image}
+                        src={product.imageSrc || (product.images && product.images[0])}
                         alt={product.name}
                         className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                       />

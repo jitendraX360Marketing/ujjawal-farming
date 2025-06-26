@@ -196,20 +196,22 @@ export default function Navbar() {
                 className="relative"
                 onMouseEnter={() => {
                   setIsProductsMenuOpen(true);
-                  // NEW: Set to 'agriculture-machinery' when menu opens
                   setActiveCategoryInMenu("agriculture-machinery");
                 }}
                 onMouseLeave={() => setIsProductsMenuOpen(false)}
               >
-                <button className="flex items-center px-4 py-2 text-gray-700 hover:text-orange-600 font-medium rounded-lg hover:bg-gradient-to-r hover:from-orange-50 hover:to-red-50 transition-all duration-300">
+                <Link
+                  href="/products"
+                  className="flex items-center px-4 py-2 text-gray-700 hover:text-orange-600 font-medium rounded-lg hover:bg-gradient-to-r hover:from-orange-50 hover:to-red-50 transition-all duration-300 cursor-pointer"
+                  onClick={() => setIsProductsMenuOpen(false)}
+                >
                   Our Products
                   {isProductsMenuOpen ? (
                     <ChevronUp className="ml-1 w-4 h-4" />
                   ) : (
                     <ChevronDown className="ml-1 w-4 h-4" />
                   )}
-                </button>
-
+                </Link>
                 {isProductsMenuOpen && (
                   <div className="absolute left-1/2 top-9 -translate-x-1/2 mt-2 w-[800px] bg-white rounded-xl shadow-2xl p-6 border border-orange-100 transform -translate-y-0.5 animate-fade-in-down">
                     <div className="flex flex-col">
