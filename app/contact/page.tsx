@@ -88,38 +88,35 @@ export default function ContactPage() {
     {
       icon: Phone,
       title: "Phone Support",
-      details: [
-        "+91 98765 43210 (Ujjawal Farming)",
-        "+91 87654 32109 (Shri Shyam Engineering)",
-      ],
+      details: ["+91 99295 96124", "+91 70734 96124"],
       description: "24/7 Customer Support",
       color: "from-green-600 to-emerald-700",
       bgColor: "from-green-50 to-emerald-100",
     },
     {
       icon: Mail,
-      title: "Email Assistance", // Renamed for professionalism
-      details: ["info@ujjawalfarming.com", "support@shrishyameng.com"],
-      description: "Response within 2 hours", // Shortened description
+      title: "Email Assistance",
+      details: ["info@jaishrishyameng.com"],
+      description: "Response within 2 hours",
       color: "from-blue-600 to-indigo-700",
       bgColor: "from-blue-50 to-indigo-100",
     },
     {
       icon: MapPin,
-      title: "Factory & Head Office", // Renamed for clarity
+      title: "Factory & Head Office",
       details: [
-        "Industrial Area, Sector 5",
-        "Bhiwadi, Rajasthan - 301019, India",
+        "Jaipur Unit: Near by Bhagwati Nursery Road No 14, VKI, Jaipur, Laxminarayanpura, Rajasthan 302013, India",
+        "Shahpura Unit: Plot No. 277/278 Mangalam Industries Part, Manoharpur, Jaipur, Rajasthan",
       ],
-      description: "Shri Shyam Engineering", // More concise
+      description: "Shri Shyam Engineering",
       color: "from-amber-600 to-orange-700",
       bgColor: "from-amber-50 to-orange-100",
     },
     {
       icon: Clock,
-      title: "Operational Hours", // Renamed for professionalism
+      title: "Operational Hours",
       details: ["Mon-Sat: 9:00 AM - 7:00 PM", "Sunday: 10:00 AM - 5:00 PM"],
-      description: "Standard Business Hours", // More concise
+      description: "Standard Business Hours",
       color: "from-red-600 to-pink-700",
       bgColor: "from-red-50 to-pink-100",
     },
@@ -682,17 +679,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-      <div>
-        <h1>Hello </h1>
-        <Image
-          src={
-            "https://ik.imagekit.io/yourcompany/default-image.jpg?updatedAt=1750404370440"
-          }
-          alt="Image"
-          height={200}
-          width={200}
-        />
-      </div>
     </div>
   );
 }

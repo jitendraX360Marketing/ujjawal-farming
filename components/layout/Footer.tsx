@@ -101,18 +101,20 @@ export default function Footer() {
               <div className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-orange-500 mt-1 flex-shrink-0" />
                 <span className="text-gray-300 text-sm">
-                  Industrial Area, Sector 15
+                  Jaipur Unit:<br />
+                  Near by Bhagwati Nursery Road No 14, VKI, Jaipur, Laxminarayanpura, Rajasthan 302013, India
                   <br />
-                  Punjab, India 141001
+                  Shahpura Unit:<br />
+                  Plot No. 277/278 Mangalam Industries Part, Manoharpur, Jaipur, Rajasthan
                 </span>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-orange-500 flex-shrink-0" />
-                <span className="text-gray-300 text-sm">+91 98765 43210</span>
+                <span className="text-gray-300 text-sm">+91 99295 96124, +91 70734 96124</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-orange-500 flex-shrink-0" />
-                <span className="text-gray-300 text-sm">info@agritech.com</span>
+                <span className="text-gray-300 text-sm">info@jaishrishyameng.com</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Truck className="w-5 h-5 text-orange-500 flex-shrink-0" />

@@ -139,11 +139,15 @@ export default function Navbar() {
           <div className="flex items-center space-x-8">
             <div className="flex items-center space-x-2 hover:scale-105 transition-transform duration-200">
               <Phone className="w-4 h-4" />
-              <span className="font-medium">+91 98765 43210</span>
+              <span className="font-medium">+91 99295 96124</span>
+            </div>
+            <div className="flex items-center space-x-2 hover:scale-105 transition-transform duration-200">
+              <Phone className="w-4 h-4" />
+              <span className="font-medium">+91 70734 96124</span>
             </div>
             <div className="flex items-center space-x-2 hover:scale-105 transition-transform duration-200">
               <Mail className="w-4 h-4" />
-              <span className="font-medium">info@agrimachinery.in</span>
+              <span className="font-medium">info@jaishrishyameng.com</span>
             </div>
           </div>
           <div className="flex items-center space-x-6">

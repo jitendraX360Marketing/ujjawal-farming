@@ -716,34 +716,27 @@ export default function AboutPage() {
 
           {/* Contact Information */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 max-w-4xl mx-auto">
-            {" "}
-            {/* Reduced gap and margin, smaller max-width */}
+            {/* Jaipur Unit */}
             <div className="group bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105">
-              {" "}
-              {/* Less rounded, reduced padding */}
-              <Phone className="w-8 h-8 text-amber-400 mx-auto mb-3 group-hover:scale-110 transition-transform duration-300" />{" "}
-              {/* Smaller icon, reduced margin */}
-              <h4 className="text-base font-bold text-white mb-1">
-                Call Us
-              </h4>{" "}
-              {/* Reduced font size, reduced margin */}
+              <Phone className="w-8 h-8 text-amber-400 mx-auto mb-3 group-hover:scale-110 transition-transform duration-300" />
+              <h4 className="text-base font-bold text-white mb-1">Call Us</h4>
               <p className="text-amber-100 font-semibold text-sm">
-                +91 9876543210
-              </p>{" "}
-              {/* Reduced font size */}
+                +91 99295 96124<br />+91 70734 96124
+              </p>
             </div>
             <div className="group bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105">
               <Mail className="w-8 h-8 text-amber-400 mx-auto mb-3 group-hover:scale-110 transition-transform duration-300" />
               <h4 className="text-base font-bold text-white mb-1">Email Us</h4>
               <p className="text-amber-100 font-semibold text-sm">
-                info@ujjawalfarming.com
+                info@jaishrishyameng.com
               </p>
             </div>
             <div className="group bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105">
               <MapPin className="w-8 h-8 text-amber-400 mx-auto mb-3 group-hover:scale-110 transition-transform duration-300" />
               <h4 className="text-base font-bold text-white mb-1">Visit Us</h4>
               <p className="text-amber-100 font-semibold text-sm">
-                Jaipur, Rajasthan
+                Jaipur Unit:<br />Near by Bhagwati Nursery Road No 14, VKI, Jaipur, Laxminarayanpura, Rajasthan 302013, India
+                <br /><br />Shahpura Unit:<br />Plot No. 277/278 Mangalam Industries Part, Manoharpur, Jaipur, Rajasthan
               </p>
             </div>
           </div>
