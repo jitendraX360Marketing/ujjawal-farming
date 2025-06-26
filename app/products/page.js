@@ -220,18 +220,18 @@ export default function ProductsPage() {
                     All Products
                   </button>
                 </li>
-                {productData.map((category) => (
-                  <li key={category.slug} className="mb-2">
+                {Object.entries(productData).map(([categoryKey, products]) => (
+                  <li key={categoryKey} className="mb-2">
                     <button
-                      onClick={() => setSelectedCategory(category.slug)}
+                      onClick={() => setSelectedCategory(categoryKey)}
                       className={`w-full text-left px-4 py-2 rounded-lg font-medium text-base transition-all duration-200
                         ${
-                          selectedCategory === category.slug
+                          selectedCategory === categoryKey
                             ? "bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-md"
                             : "text-gray-700 hover:bg-orange-50 hover:text-orange-700"
                         }`}
                     >
-                      {category.name}
+                      {categoryKey.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase())}
                     </button>
                   </li>
                 ))}
