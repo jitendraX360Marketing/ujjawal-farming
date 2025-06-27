@@ -3,6 +3,7 @@
 export const productData = {
   "agriculture-machinery": [
     {
+      category: "agriculture-machinery",
       name: "Rotavator",
       slug: "rotavator",
       imageSrc: "/images/Products/Agriculture Machinery/Rotavator/main-photo.png",
@@ -46,6 +47,7 @@ export const productData = {
       ]
     },
     {
+      category: "agriculture-machinery",
       name: "Chaff Cutter",
       slug: "chaff-cutter",
       imageSrc: "/images/Products/Agriculture Machinery/Chaff Cutter/main-img.png",
@@ -76,6 +78,7 @@ export const productData = {
       ]
     },
     {
+      category: "agriculture-machinery",
       name: "Chaff Cutter Toka",
       slug: "chaff-cutter-toka",
       imageSrc: "/images/Products/Agriculture Machinery/Chaff Cutter Toka/main-img.png",
@@ -106,6 +109,7 @@ export const productData = {
       ]
     },
     {
+      category: "agriculture-machinery",
       name: "Plaugh",
       slug: "plaugh",
       imageSrc: "/images/Products/Agriculture Machinery/Plaugh/img1.png",
@@ -135,6 +139,7 @@ export const productData = {
   ],
   "electric-panel": [
     {
+      category: "electric-panel",
       name: "Control Box",
       slug: "control-box",
       imageSrc: "/images/Products/Electric Panel/main-img.JPG",
@@ -145,6 +150,7 @@ export const productData = {
       price: null // Always show Custom Quote
     },
     {
+      category: "electric-panel",
       name: "Distribution Panel",
       slug: "distribution-panel",
       imageSrc: "/images/Products/Electric Panel/main-img.JPG",
@@ -155,6 +161,7 @@ export const productData = {
       price: null // Always show Custom Quote
     },
     {
+      category: "electric-panel",
       name: "Circuit Breaker",
       slug: "circuit-breaker",
       imageSrc: "/images/Products/Electric Panel/main-img.JPG",
@@ -165,6 +172,7 @@ export const productData = {
       price: null // Always show Custom Quote
     },
     {
+      category: "electric-panel",
       name: "Motor Starter",
       slug: "motor-starter",
       imageSrc: "/images/Products/Electric Panel/main-img.JPG",
@@ -177,6 +185,7 @@ export const productData = {
   ],
   "laser-cutting-service": [
     {
+      category: "laser-cutting-service",
       name: "12kw Laser Cutting",
       slug: "12kw",
       imageSrc: "/images/Products/Laser Cutting Service/LCS1.JPG",
@@ -189,6 +198,7 @@ export const productData = {
       price: null // Always show Custom Quote
     },
     {
+      category: "laser-cutting-service",
       name: "6kw Laser Cutting",
       slug: "6kw",
       imageSrc: "/images/Products/Laser Cutting Service/LCS4.JPG",

@@ -391,7 +391,7 @@ export default function Navbar() {
                     {productCategories.map((category, index) => (
                       <Link
                         key={index}
-                        href={category.href} // On mobile, clicking the category link takes you to the category page
+                        href={category.href}
                         className="block py-2 px-3 text-gray-600 hover:text-orange-600 hover:bg-orange-100 rounded-lg transition-colors duration-200"
                         onClick={handleMobileLinkClick}
                       >
@@ -409,19 +409,11 @@ export default function Navbar() {
                 )}
 
                 <Link
-                  href="/about"
-                  className="block px-4 py-3 text-gray-700 hover:text-orange-600 hover:bg-gradient-to-r hover:from-orange-50 hover:to-red-50 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
-                  onClick={handleMobileLinkClick}
-                >
-                  About
-                </Link>
-
-                <Link
                   href="/export"
                   className="flex items-center space-x-2 px-4 py-3 text-gray-700 hover:text-orange-600 hover:bg-gradient-to-r hover:from-orange-50 hover:to-red-50 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
                   onClick={handleMobileLinkClick}
                 >
-                  Export{" "}
+                  Export
                 </Link>
 
                 <Link
@@ -440,9 +432,16 @@ export default function Navbar() {
                   Contact
                 </Link>
 
+                <Link
+                  href="/about"
+                  className="block px-4 py-3 text-gray-700 hover:text-orange-600 hover:bg-gradient-to-r hover:from-orange-50 hover:to-red-50 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
+                  onClick={handleMobileLinkClick}
+                >
+                  About
+                </Link>
+
                 <Link href={"/contact"}>
                   <div className="pt-4">
-                    {" "}
                     <button
                       className="w-full px-6 py-4 bg-gradient-to-r from-orange-500 via-orange-600 to-red-600 text-white font-bold rounded-2xl hover:from-orange-600 hover:via-orange-700 hover:to-red-700 transition-all duration-300 shadow-2xl transform hover:scale-105 hover:-translate-y-1"
                       onClick={handleMobileLinkClick}
