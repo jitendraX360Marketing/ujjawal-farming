@@ -307,7 +307,7 @@ export default function ProductsPage() {
                       </span>
                     </p>
                     <p className="text-lg font-bold text-orange-700 mb-3">
-                      {product.price !== null
+                      {product.price !== null && !isNaN(product.price)
                         ? `₹ ${product.price.toLocaleString("en-IN")}`
                         : "Custom Quote"}
                     </p>
@@ -315,8 +315,7 @@ export default function ProductsPage() {
                       className="text-gray-600 text-sm mb-4 flex-grow"
                       style={{ whiteSpace: "pre-line" }}
                     >
-                      {truncateDescription(product.description, 2, 45)}{" "}
-                      {/* Max 2 lines for description */}
+                      {product.description ? truncateDescription(product.description, 2, 45) : ""} {/* Max 2 lines for description */}
                     </p>
 
                     <div className="flex flex-row space-x-2 mt-auto">
